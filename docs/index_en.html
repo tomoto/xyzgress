@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- This template is originated at http://www.tagindex.com/template/page/type2_design2.html -->
+<html lang="en-us">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<meta name="keywords" content="xyzgress,ingress,unity,tomoto">
+<meta name="description" content="xyzgress, the game, inspired by xxgress by ">
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<title>XYZGRESS</title>
+
+</head>
+<body>
+
+<!-- Header -->
+<div id="header">
+ <div class="top">
+  <div class="container">
+   <h1 class="siteTitle">XYZGRESS's home</h1>
+   <p class="catch"><strong>Yet another retro-gamified Ingress, inspired by XXGRESS</strong></p>
+   <ul class="guide">
+    <li class="first"><a href="index.html">日本語</a></li>
+    <li>English</li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="opening">
+  <div class="container">
+  </div>
+ </div>
+
+ <hr class="none">
+</div>
+<!-- Header End -->
+
+<!-- Content -->
+<div id="content">
+ <div class="container">
+
+  <!-- Main column -->
+  <div id="main">
+
+   <div class="section normal">
+    <div class="heading"><h2>What's XYZGRESS？</h2></div>
+
+    <p>There was a retro game called <a href="http://www.lexaloffle.com/bbs/?tid=3791">XXGRESS</a>, created one Ingress fan <i>kotaku</i>, and this is my version of it as homage.</p>
+    <p>The original XXGRESS was REALLY great. I played it again and again, and eventually got many ideas of improvements and fixes that would make the game more tactically interesting. I did not feel like just leaving those ideas, hence created this version of mine. While I pretty much liked the minimalism of the original one, I certainly believe you can have a different kind of fun to outsmart the tough computer agents with this version.</p>
+
+   </div>
+
+   <div class="section normal">
+    <div class="heading"><h2>Getting started</h2></div>
+
+    <p>The game shows up below. Arrow keys and [Z][X] are all you need to use, so please don't be shy and try it!</p>
+
+    <p>Note: WebGL-supported browser is required. It may take time to load the game, so please be patient if it looked unresponsive.</p>
+
+<!-- Unity WebGL Player Begin -->
+<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="600px" style="border-style: solid"></canvas>
+<a href="javascript:void(0)" onclick="SetFullscreen(1)">Fullscreen</a>
+<!-- <img src="xyzgressweb/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /> -->
+<script type='text/javascript'>
+  var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,
+    compatibilitycheck: null,
+    backgroundColor: "#222C36",
+    splashStyle: "Light",
+    dataUrl: "xyzgressweb/Release/xyzgressweb.data",
+    codeUrl: "xyzgressweb/Release/xyzgressweb.js",
+    asmUrl: "xyzgressweb/Release/xyzgressweb.asm.js",
+    memUrl: "xyzgressweb/Release/xyzgressweb.mem",
+  };
+</script>
+<script src="xyzgressweb//Release/UnityLoader.js"></script>
+<!-- Unity WebGL Player End -->
+
+   </div>
+
+   <div class="section normal update">
+    <div class="heading">
+     <h2>How to play</h2>
+    </div>
+
+    <p>It is just like the original XXGRESS. I am sure you can get how it works quickly if you have some Ingress experience.</p>
+
+    <dl class="clearFix">
+     <dt>Cursor keys</dt>
+     <dd>Move</dd>
+     <dt>[Z]</dt>
+     <dd>Fire burster, select menu</dd>
+     <dt>[X]</dt>
+     <dd>Link to nearest portal</dd>
+     <dt>[ESC]</dt>
+     <dd>Withdraw</dd>
+    </dl>
+
+    <p></p>
+    <p>You will fight for 7 days, and  win the game by controlling 100+ MUs more than the enermy in the end.</p>
+   </div>
+
+   <div class="section normal">
+    <div class="heading">
+     <h2>How this version (XYZGRESS) is different from the original (XXGRESS)?</h2>
+    </div>
+
+    <ul>
+     <li>You can choose the difficulty, i.e. number of enemies.</li>
+     <li>The enemies are smarter and use the same burster to attack your portals.</li>
+     <li>More Ingress features are implemented and you can use a variety of common Ingress tactics to win the game, e.g. links to increase the portal's damage mitigation, CF cover to restrict the enemy moves, recharging to defend important portals, saying hi to enemies to slow them down, rapid-firing the bursters (only unlocked in 4-enemy mode), nova tactics, etc. Find yourself how you can execute and leverage these tactics.</li>
+     <li>AP and the agent level are measured.</li>
+     <li>One frustrating bug, where sometimes links are not created when you theoretically can, was fixed.
+    </ul>
+   </div>
+
+   <div class="section normal">
+    <div class="heading">
+     <h2>Miscellaneous</h2>
+    </div>
+    <ul>
+     <li>This is exactly like what I was doing when I was a high school student -- making games and sending them to magazine publishers. I am used to it.</li>
+     <li>I used Unity this time to use it as an opportunity for my personal learning.</li>
+    </ul>
+   </div>
+
+  </div>
+
+  <!-- Side column -->
+  <div id="nav">
+
+   <div class="section normal">
+    <h2>Related links</h2>
+    <p><a href="http://github.com/tomoto/xyzgress/">Source code</a></p>
+    <p><a href="http://www.lexaloffle.com/bbs/?tid=3791">XXGRESS</a></p>
+   </div>
+
+  </div>
+  <!-- サイドバー終了 -->
+
+  <hr class="clear">
+ </div>
+</div>
+<!-- Content End -->
+
+<!-- Footer -->
+<div id="footer">
+ <div class="container">
+  <address><strong>Tomoto S. Washio</strong></address>
+  <ul class="nl">
+   <li><a href="http://tomoto335.hatenablog.com/">Hatena Blog</a></li>
+   <li><a href="https://plus.google.com/u/0/113656725478355493697">Google+</a></li>
+   <li><a href="https://www.youtube.com/user/hogehoge335">YouTube</a></li>
+   <li><a href="https://www.linkedin.com/in/tomoto">LinkedIn</a></li>
+  </ul>
+ </div>
+</div>
+<!-- Footer End -->
+
+</body>
+</html>
