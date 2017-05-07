@@ -1,30 +1,70 @@
-<!doctype html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- This template is originated at http://www.tagindex.com/template/page/type2_design2.html -->
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>XYZGRESS</title>
-  </head>
-  <body style="margin: 40px">
+<head>
 
-<!-- My text #1 -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
 
-<h1>XYZGRESS</h1>
+<meta name="keywords" content="xyzgress,ingress,unity,tomoto">
+<meta name="description" content="xyzgress, the game, inspired by xxgress by ">
 
-<p>(Sorry for Japanese only, for now.)</p>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
-<h2>【これは何？】</h2>
-kotakuさんの手によるIngressをレトロゲーム化した「<a href="https://plus.google.com/108415666091685643111/posts/MXwD5CUjNJY">XXGRESS</a>」のオマージュとして、私<a href="http://tomoto335.hatenablog.com/">Tomoto</a>が作った移植版です。</p>
-<p>本家のXXGRESS、すごく面白いんですよ。面白くてしばらくハマってしまったのですが、やっているうちに「ここを変えたらもっと面白くなるはず！」とアイディアが次々出てきて、結局それらを盛り込んだ移植版を作っちゃいました。本家の素朴さは若干失われてしまいましたが、より奥深く、頭を使わされるゲームになったと思います。</p>
+<title>XYZGRESS</title>
 
-<!-- Unity WebGL Player -->
-<center>
-<span style="font-size: 80%">(WebGLをサポートしたブラウザが必要です。ゲーム画面が表示されるまで多少時間がかかります。)</span><br/>
-<div>
-<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="600px" style="border-style: solid"></canvas>
-<img src="xyzgressweb/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" />
+</head>
+<body>
+
+<!-- Header -->
+<div id="header">
+ <div class="top">
+  <div class="container">
+   <h1 class="siteTitle">XYZGRESSのページ</h1>
+   <p class="catch"><strong>XXGRESSに続くもうひとつのIngressレトロゲーム</strong></p>
+   <ul class="guide">
+    <li class="first">日本語></li>
+    <li><a href="index_eh.html">English</a></li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="opening">
+  <div class="container">
+  </div>
+ </div>
+
+ <hr class="none">
 </div>
-</center>
+<!-- Header End -->
+
+<!-- Content -->
+<div id="content">
+ <div class="container">
+
+  <!-- Main column -->
+  <div id="main">
+
+   <div class="section normal">
+    <div class="heading"><h2>XYZGRESSって何？</h2></div>
+
+    <p>Ingressをレトロゲーム化した「<a href="https://plus.google.com/108415666091685643111/posts/MXwD5CUjNJY">XXGRESS</a>」(作者:kotakuさん)のオマージュとして作った移植版です。</p>
+    <p>本家のXXGRESS、すごく面白いんですよ。面白くてしばらくハマってしまったのですが、やっているうちに「ここを変えたら・直したらもっと面白くなるはず！」とアイディアが次々出てきて、結局それらを盛り込んだ移植版を作っちゃいました。もとの素朴さは若干失われてしまいましたが、より奥深く、頭を使わされるゲームになったと思います。</p>
+
+   </div>
+
+   <div class="section normal">
+    <div class="heading"><h2>遊んでみよう！</h2></div>
+
+    <p>下にゲーム画面が表示されます。カーソルキーと[Z][X]だけで遊べるのでレッツトライ！</p>
+
+    <p>※WebGLをサポートしたブラウザが必要です。動き出すまで時間がかかるので気長にお待ちください。</p>
+
+<!-- Unity WebGL Player Begin -->
+<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="600px" style="border-style: solid"></canvas>
+<a href="javascript:void(0)" onclick="SetFullscreen(1)">Fullscreen</a>
+<!-- <img src="xyzgressweb/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /> -->
 <script type='text/javascript'>
   var Module = {
     TOTAL_MEMORY: 268435456,
@@ -39,41 +79,88 @@ kotakuさんの手によるIngressをレトロゲーム化した「<a href="http
   };
 </script>
 <script src="xyzgressweb//Release/UnityLoader.js"></script>
+<!-- Unity WebGL Player End -->
 
-<!-- My text #2 -->
-<h2>【遊び方】</h2>
-本家と同じく、
-<ul>
-<li>カーソルキー: 移動</li>
-<li>[Z]: バースター発射 / メニュー選択</li>
-<li>[X]: 近くのポータルにリンクを張る</li>
-</ul>
-あとはAGなら説明しなくてもわかってくれるハズ！
-<h2>【ゲームの目的】</h2>
-これも本家と同じ、7日目を迎えたときに相手より100MU以上多く支配していれば勝ちです。
-<h2>【強化点のハイライト】</h2>
-<ul>
-<li>難易度(敵の数)を選べます。</li>
-<li>敵が若干賢くなり、自分と同じくバースターを撃ってきます。</li>
-<li>リンクによるポータル強化、CFによる沈没、リチャ防衛、リアキャプ妨害、廃人撃ち(敵4人モードでのみ解禁)、スーパーノヴァ、…といった実際のIngressでおなじみの戦術が使えるようになっています。やり方や活用方法は自分で見つけてください！</li>
-<li>張れるはずのリンクが張れないことがあるバグは修正済み(実はこれが一番直したかったところ)。</li>
-<li>Unity WebGLを使っているので重いかもしれません。最初の読み込みには10秒以上かかるかも。</li>
-</ul>
+   </div>
 
-    <script type='text/javascript'>
-  var Module = {
-    TOTAL_MEMORY: 268435456,
-    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-    compatibilitycheck: null,
-    backgroundColor: "#222C36",
-    splashStyle: "Light",
-    dataUrl: "xyzgressweb/Release/xyzgressweb.data",
-    codeUrl: "xyzgressweb/Release/xyzgressweb.js",
-    asmUrl: "xyzgressweb/Release/xyzgressweb.asm.js",
-    memUrl: "xyzgressweb/Release/xyzgressweb.mem",
-  };
-</script>
-<script src="xyzgressweb/Release/UnityLoader.js"></script>
+   <div class="section normal update">
+    <div class="heading">
+     <h2>遊び方</h2>
+    </div>
 
-  </body>
+    <p>操作は本家とほぼ同様です。AGならあとは詳しく説明しなくてもなんとなくわかってくれるハズ！</p>
+
+    <dl class="clearFix">
+     <dt>カーソルキー</dt>
+     <dd>移動</dd>
+     <dt>[Z]</dt>
+     <dd>バースター発射、またはメニュー選択</dd>
+     <dt>[X]</dt>
+     <dd>近くのポータルにリンクを張る</dd>
+     <dt>[ESC]</dt>
+     <dd>降参</dd>
+    </dl>
+
+    <p></p>
+    <p>7日目を迎えたときに相手より100MU以上多く支配していれば勝ちとなります。</p>
+   </div>
+
+   <div class="section normal">
+    <div class="heading">
+     <h2>本家との主な違い</h2>
+    </div>
+
+    <ul>
+     <li>難易度(敵の数)を選べます。</li>
+     <li>敵が若干賢くなっており、自分と同じくバースターで攻撃してきます。</li>
+     <li>Ingressの仕様が追加で盛り込まれており、リンクによるポータル強化、CFによる沈没、リチャ防衛、リアキャプによる妨害、廃人撃ち(敵4人モードでのみ解禁)、ノヴァ作戦…といった実際のIngressでおなじみの戦術が使えるようになっています。やり方や活用方法は自分で見つけてください！</li>
+     <li>APとエージェントレベルが測定されます。MUを狙うか、メダルを狙うか、APを狙うかはあなた次第です。</li>
+     <li>張れるはずのリンクが張れないことがあるバグが直っています(実はこれが一番対策したかった)。</li>
+    </ul>
+   </div>
+
+   <div class="section normal">
+    <div class="heading">
+     <h2>その他</h2>
+    </div>
+    <ul>
+     <li>昔ベーマガ投稿人をやっていたもので、こういうのは実は得意分野です。</li>
+     <li>今回勉強のためにUnityを使ってみました。</li>
+    </ul>
+   </div>
+
+  </div>
+
+  <!-- Side column -->
+  <div id="nav">
+
+   <div class="section normal">
+    <h2>関連リンク</h2>
+    <p><a href="http://github.com/tomoto/xyzgress/">ソースコード</a></p>
+    <p><a href="http://www.lexaloffle.com/bbs/?tid=3791">本家XXGRESS</a></p>
+   </div>
+
+  </div>
+  <!-- サイドバー終了 -->
+
+  <hr class="clear">
+ </div>
+</div>
+<!-- Content End -->
+
+<!-- Footer -->
+<div id="footer">
+ <div class="container">
+  <address><strong>Tomoto S. Washio</strong></address>
+  <ul class="nl">
+   <li><a href="http://tomoto335.hatenablog.com/">Hatena Blog</a></li>
+   <li><a href="https://plus.google.com/u/0/113656725478355493697">Google+</a></li>
+   <li><a href="https://www.youtube.com/user/hogehoge335">YouTube</a></li>
+   <li><a href="https://www.linkedin.com/in/tomoto">LinkedIn</a></li>
+  </ul>
+ </div>
+</div>
+<!-- Footer End -->
+
+</body>
 </html>

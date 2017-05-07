@@ -1,0 +1,498 @@
+@charset "utf-8";
+
+/* --- タイプ2 デザイン2 --- */
+
+
+/* --- 全体の背景・テキスト --- */
+body {
+min-width: 880px; /* 全体の最小幅 */
+margin: 0;
+padding: 0;
+background-color: #ffffff; /* 全体の背景色 */
+color: #404040; /* 全体の文字色 */
+font-size: 80%; /* 全体の文字サイズ */
+}
+
+/* --- 全体のリンクテキスト --- */
+a:link { color: #0000ff; }
+a:visited { color: #000090; }
+a:hover { color: #c07100; }
+a:active { color: #c07100; }
+
+/* --- コンテナ --- */
+#header div.container,
+#content div.container,
+#footer div.container {
+width: 880px; /* コンテナの幅 */
+margin: 0 auto; /* センタリング */
+}
+
+
+/* --- ▼ヘッダ内の設定開始 --- */
+
+/* --- ヘッダ --- */
+#header{
+border-top: 5px #402900 solid; /* ヘッダの上境界線 */
+}
+
+/* --- トップエリア --- */
+#header div.top {
+padding: 15px 0 10px; /* トップエリアのパディング（上、左右、下） */
+background-color: #fbf6f1; /* トップエリアの背景色 */
+border-top: 1px #ffffff solid; /* トップエリアの上境界線 */
+border-bottom: 1px #402900 solid; /* トップエリアの下境界線 */
+}
+#header div.top div.container {
+position: relative; /* 相対配置（ガイドメニューのために設定） */
+}
+
+/* --- サイトタイトル --- */
+#header h1.siteTitle,
+#header p.siteTitle {
+margin: 0 0 7px; /* サイトタイトルのマージン（上、左右、下） */
+font-size: 200%; /* サイトタイトルの文字サイズ */
+}
+/* サイトタイトルの画像 */
+#header h1.siteTitle img,
+#header p.siteTitle img {
+border: none;
+}
+
+/* --- キャッチフレーズ --- */
+#header p.catch {
+margin: 0;
+}
+#header p.catch strong {
+font-weight: normal; /* 文字の太さ（ノーマル） */
+}
+
+/* --- ガイドメニュー --- */
+#header ul.guide {
+position: absolute; /* 絶対配置 */
+top: 10px; /* 上からの距離 */
+right: 10px; /* 右からの距離 */
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+/* メニュー項目 */
+#header ul.guide li {
+display: inline;
+padding: 0 4px 0 8px; /* 項目のパディング（上右下左） */
+background: url(../image/menu_line_gray.gif) no-repeat left; /* 項目の背景（区切り線） */
+}
+/* 最初の項目 */
+#header ul.guide li.first {
+background: none; /* 区切り線なし */
+}
+
+/* --- オープニングエリア（トップページ） --- */
+#header div.opening {
+padding: 8px 0; /* オープニングエリアのパディング（上下、左右） */
+background: #eee2d0 url(../image/opening_back2.gif) repeat-x top; /* オープニングエリアの背景 */
+border-bottom: 1px #402900 solid; /* オープニングエリアの下境界線 */
+}
+/* オープニングエリア内の見出し */
+#header div.opening h2 {
+margin: 0;
+}
+
+/* --- ヘッダメニュー --- */
+#header div.nl {
+background: #402700 url(../image/hor_menu7_off.gif) repeat-x top; /* ヘッダメニューの背景 */
+border-top: 1px #4d3d21 solid; /* ヘッダメニューの上境界線 */
+border-bottom: 2px #402900 solid; /* ヘッダメニューの下境界線 */
+}
+/* --- メニュー本体 --- */
+#header div.nl ul {
+width: 878px; /* メニュー本体の幅（コンテナの幅から2px引いた値） */
+margin: 0;
+padding: 0;
+border-left: 1px #2e1c00 solid; /* メニュー本体の左境界線 */
+border-right: 1px #4d3d21 solid; /* メニュー本体の右境界線 */
+list-style-type: none;
+text-align: center;
+}
+/* メニュー項目 */
+#header div.nl li {
+width: 146px; /* 項目の幅 */
+float: left;
+line-height: 100%;
+}
+/* 最初の項目と最後の項目 */
+#header div.nl li.first,
+#header div.nl li.last {
+width: 147px; /* 項目の幅 */
+}
+/* リンクエリア */
+#header div.nl li a {
+display: block;
+position: relative; /* IE6用 */
+padding: 10px 2px 7px; /* リンクエリアのパディング（上、左右、下） */
+border-left: 1px #4d3d21 solid; /* リンクエリアの左境界線 */
+border-right: 1px #2e1c00 solid; /* リンクエリアの右境界線 */
+text-decoration: none; /* テキストの下線（なし） */
+font-weight: bold; /* 文字の太さ（太字） */
+color: #ffffff; /* 文字色 */
+}
+/* 英字部分 */
+#header div.nl li a span.en {
+display: block;
+margin-top: 2px; /* 英字部分の上マージン */
+font-size: 85%; /* 英字の文字サイズ */
+font-weight: normal; /* 文字の太さ（ノーマル） */
+color: #eee8aa; /* 英字の文字色 */
+}
+/* ポイント時とアクティブ時の設定 */
+#header div.nl li a:hover,
+#header div.nl li.active a {
+background: #4d3400 url(../image/hor_menu7_on.gif) repeat-x top; /* ポイント時（アクティブ時）の背景 */
+}
+#header div.nl li a:hover span.en,
+#header div.nl li.active span.en {
+color: #fde337; /* ポイント時（アクティブ時）の英字の文字色 */
+}
+
+/* --- トピックパス（下層ページ） --- */
+#header div.topicPath {
+margin: 0;
+padding: 7px 2px; /* トピックパスのパディング（上下、左右） */
+background-color: #eee2d0; /* トピックパスの背景色 */
+}
+#header div.topicPath ol {
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+/* リスト項目 */
+#header div.topicPath li {
+display: inline;
+}
+/* リンクエリア */
+#header div.topicPath li a {
+padding-right: 12px; /* リンクエリアの右パディング */
+background: url(../image/topic_path_gray.gif) no-repeat right; /* リンクエリアの背景（区切り記号） */
+}
+
+/* --- 罫線 --- */
+#header hr.none {
+display: none; /* 表示形式（なし） */
+}
+
+/* --- ▲ヘッダ内の設定終了 --- */
+
+
+/* --- ▼コンテンツ内の設定開始 --- */
+
+/* --- コンテンツ --- */
+#content {
+padding: 20px 0 10px; /* コンテンツのパディング（上、左右、下） */
+}
+
+
+/* --- ▼メインカラム内の設定開始 --- */
+
+/* --- メインカラム --- */
+#main {
+float: right;
+width: 660px; /* メインカラムの幅 */
+}
+
+/* --- ページタイトル（下層ページ） --- */
+#main h1.pageTitle {
+margin: 0 0 15px 20px; /* ページタイトルのマージン（上右下左） */
+padding: 6px 10px; /* ページタイトルのパディング（上下、左右） */
+background-color: #463f34; /* ページタイトルの背景色 */
+font-size: 170%; /* ページタイトルの文字サイズ */
+color: #ffffff; /* ページタイトルの文字色 */
+}
+
+/* --- セクション（共通設定） --- */
+#main div.section {
+margin: 0 0 2em 20px; /* セクションのマージン（上右下左） */
+}
+
+/* --- 標準セクション --- */
+/* --- 見出しエリア --- */
+#main div.normal div.heading {
+margin: 0 0 1em; /* 見出しエリアのマージン（上、左右、下） */
+padding: 6px; /* 見出しエリアのパディング */
+background-color: #e4e0da; /* 見出しエリアの背景色 */
+}
+/* 見出し */
+#main div.normal h2 {
+margin: 0;
+padding: 1px 0 0 5px; /* 見出しのパディング（上右下左） */
+border-left: 5px #b6ada0 solid; /* 見出しの左境界線 */
+font-size: 120%; /* 見出しの文字サイズ */
+line-height: 100%; /* 行の高さ */
+}
+/* 段落 */
+#main div.normal p {
+margin: 0 10px 1em; /* 段落のマージン（上、左右、下） */
+line-height: 160%; /* 行の高さ */
+}
+
+/* リスト */
+#main div.normal ul {
+padding: 0 16px 0;
+margin: 0 10px 1em; /* リストのマージン（上、左右、下） */
+}
+
+#main div.normal li {
+margin: 0 0px 0.5em; /* 項目間のマージン（上、左右、下） */
+line-height: 160%; /* 行の高さ */
+}
+
+/* --- 強調セクション --- */
+#main div.emphasis {
+margin-bottom: 3em; /* セクションの下マージン（上書き） */
+padding: 7px; /* セクションのパディング */
+background: #eee2d0 url(../image/emphasis_back3.gif); /* セクションの背景 */
+}
+#main div.emphasis div.inner {
+padding: 1.1em 10px 1px; /* 内部のパディング（上、左右、下） */
+background-color: #fbf6f1; /* 内部の背景色 */
+}
+ /* 見出し */
+#main div.emphasis h2 {
+margin: 0 0 0.8em; /* 見出しのマージン（上、左右、下） */
+font-size: 130%; /* 見出しの文字サイズ */
+color: #000000; /* 見出しの文字色 */
+}
+ /* 段落 */
+#main div.emphasis p {
+margin: 0 0 1em; /* 段落のマージン（上、左右、下） */
+line-height: 150%; /* 行の高さ */
+}
+
+/* --- 新着情報（トップページ） --- */
+#main div.update dl {
+width: 620px; /* 新着情報の幅（メインカラムの幅から40px引いた値） */
+margin: 0 auto; /* センタリング */
+}
+/* 日付エリア */
+#main div.update dt {
+width: 6.7em; /* 日付エリアの幅 */
+float: left;
+padding: 7px 0 6px 3px; /* 日付エリアのパディング（上右下左） */
+line-height: 120%; /* 行の高さ */
+}
+/* 本文エリア */
+#main div.update dd {
+margin: 0;
+padding: 7px 3px 6px 6.6em; /* 本文エリアのパディング（上右下左） */
+border-bottom: 1px #c0c0c0 dotted; /* 本文エリア下境界線 */
+line-height: 120%; /* 行の高さ */
+}
+
+/* --- ▲メインカラム内の設定終了 --- */
+
+
+/* --- ▼サイドバー内の設定開始 --- */
+
+/* --- サイドバー --- */
+#nav {
+float: right;
+width: 220px; /* サイドバーの幅 */
+}
+
+/* --- セクション（共通設定） --- */
+#nav div.section {
+margin-bottom: 10px; /* セクションの下マージン */
+}
+/* 見出し */
+#nav div.section h2 {
+margin: 0 0 0.7em; /* 見出しのマージン（上、左右、下） */
+padding: 4px 6px; /* 見出しのパディング（上下、左右） */
+font-size: 120%; /* 見出しの文字サイズ */
+}
+/* 段落 */
+#nav div.section p {
+margin: 0 4px 0.6em; /* 段落のマージン（上、左右、下） */
+line-height: 130%; /* 行の高さ */
+}
+
+/* --- 標準セクション（白） --- */
+#nav div.normal {
+padding: 2px; /* セクションのパディング */
+border: 1px #e0e0e0 solid; /* セクションの境界線 */
+}
+/* 見出し */
+#nav div.normal h2 {
+background-color: #e4e0da; /* 見出しの背景色 */
+}
+
+/* --- 強調セクション1（こげ茶） --- */
+#nav div.emphasis {
+padding: 8px 5px 5px; /* セクションのパディング（上、左右、下） */
+background: #6e6252 url(../image/box_back_umberbrown2.gif) repeat-x top; /* セクションの背景 */
+border: 1px #463f34 solid; /* セクションの境界線 */
+color: #f0f0f0; /* セクションの文字色 */
+}
+/* 見出し */
+#nav div.emphasis h2 {
+border-bottom: 1px #b6ada0 solid; /* 見出しの下境界線 */
+}
+/* リンク */
+#nav div.emphasis a {
+color: #ffffff; /* リンクの文字色 */
+}
+
+/* --- 強調セクション2（グレー） --- */
+#nav div.strong {
+padding: 8px 5px 5px; /* セクションのパディング（上、左右、下） */
+background: #f4f2ee url(../image/box_back_gray2.gif) repeat-x top; /* セクションの背景 */
+border: 1px #e4e0da solid; /* セクションの境界線 */
+}
+/* 見出し */
+#nav div.strong h2 {
+border-bottom: 1px #b6ada0 solid; /* 見出しの下境界線 */
+}
+
+/* --- サブメニュー --- */
+/* サブメニュー内の見出し */
+#nav div.subMenu h2 {
+margin: 0; /* 見出しのマージン（上書き） */
+padding: 6px 9px; /* 見出しのパディング（上書き） */
+background-color: #b6ada0; /* 見出しの背景色 */
+}
+/* メニューエリア */
+#nav div.subMenu ul.nl {
+margin: 0;
+padding: 4px 6px 2px; /* メニューエリアのパディング（上、左右、下） */
+background-color: #463f34; /* メニューエリアの背景色 */
+list-style-type: none;
+}
+/* メニュー項目 */
+#nav div.subMenu ul.nl li {
+margin-bottom: 2px; /* 項目の下マージン */
+background: #f9f9f9 url(../image/ver_menu3_back.gif) repeat-x top; /* 項目の背景 */
+border: 1px solid; /* 項目の境界線（太さ、スタイル） */
+border-color: #ffffff #202020 #202020 #ffffff; /* 項目の境界線色（上右下左） */
+}
+/* リンクエリア */
+#nav div.subMenu ul.nl li a {
+display: block;
+position: relative; /* IE6用 */
+padding: 12px 5px 12px 15px; /* リンクエリアのパディング（上右下左） */
+background: url(../image/ver_menu3_off.gif) no-repeat 4px; /* リンクエリアの背景（三角マーク） */
+color: #404040; /* 文字色 */
+text-decoration: none; /* テキストの下線（なし） */
+}
+/* ポイント時の設定 */
+#nav div.subMenu ul.nl li a:hover {
+background: url(../image/ver_menu3_on.gif) no-repeat 4px; /* ポイント時の背景（三角マーク） */
+text-decoration: underline; /* テキストの下線（あり） */
+}
+
+/* --- お問い合わせ --- */
+#nav div.contact {
+padding-bottom: 0.3em; /* セクションの下パディング */
+}
+/* 段落 */
+#nav div.contact p {
+margin-bottom: 0.4em; /* 段落の下マージン（上書き） */
+}
+/* 電話番号 */
+#nav div.contact p.tel {
+margin-bottom: 0.1em; /* 段落の下マージン（上書き） */
+font-size: 150%; /* 電話番号の文字サイズ */
+font-weight: bold; /* 文字の太さ（太字） */
+color: #2b2b2b; /* 電話番号の文字色 */
+}
+/* フォームへのリンク */
+#nav div.contact p.form {
+margin-top: 0.7em; /* 段落の上マージン（上書き） */
+padding: 3px; /* 段落のパディング（白フチの幅） */
+background-color: #ffffff; /* 段落の背景色（白フチの色） */
+border: 1px solid; /* 段落の境界線（太さ、スタイル） */
+border-color: #e0e0e0 #cccccc #cccccc #e0e0e0; /* 段落の境界線色（上右下左） */
+text-align: center;
+line-height: 100%; /* 行の高さ（上書き） */
+}
+/* リンクエリア */
+#nav div.contact p.form a {
+display: block;
+position: relative; /* IE6用 */
+padding: 12px 2px; /* リンクエリアのパディング（上下、左右） */
+background: #dc3a01 url(../image/form_back2_off.gif) repeat-x top; /* リンクエリアの背景 */
+font-size: 110%; /* リンクエリアの文字サイズ */
+font-weight: bold; /* 文字の太さ（太字） */
+color: #ffffff; /* リンクエリアの文字色 */
+text-decoration: none; /* テキストの下線（なし） */
+}
+/* ポイント時の設定 */
+#nav div.contact p.form a:hover {
+background: #e14a03 url(../image/form_back2_on.gif) repeat-x top; /* ポイント時の背景 */
+}
+
+/* --- ▲サイドバー内の設定終了 --- */
+
+
+/* --- 罫線 --- */
+#content hr.clear {
+clear: right; /* 右フロートのクリア */
+width: 100%;
+margin: 0;
+visibility: hidden; /* 非表示 */
+}
+
+/* --- ▲コンテンツ内の設定終了 --- */
+
+
+/* --- ▼フッタ内の設定開始 --- */
+
+/* --- フッタ --- */
+#footer {
+padding: 20px 0; /* フッタのパディング（上下、左右） */
+background-color: #e4e0da; /* フッタの背景色 */
+}
+
+/* --- フッタメニュー --- */
+#footer ul.nl {
+margin: 0 0 10px; /* フッタメニューのマージン（上、左右、下） */
+padding: 0;
+list-style-type: none;
+text-align: center;
+}
+/* --- メニュー項目 --- */
+#footer ul.nl li {
+padding: 0 4px 0 8px; /* 項目のパディング（上右下左） */
+background: url(../image/menu_line_gray.gif) no-repeat left; /* 項目の背景（区切り線） */
+display: inline;
+}
+/* 最初の項目 */
+#footer ul.nl li.first {
+background-image: none; /* 区切り線なし */
+}
+/* ガイドメニュー */
+#footer ul.guide {
+margin: 0 0 20px; /* ガイドメニューのマージン（上書き） */
+}
+
+/* --- アドレス・コピーライト --- */
+#footer address {
+font-style: normal;
+text-align: center;
+line-height: 140%; /* 行の高さ */
+}
+
+/* --- ▲フッタ内の設定終了 --- */
+
+
+/* --- ▼その他の設定開始 --- */
+
+/* --- clearfix --- */
+.clearFix:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+.clearFix {
+min-height: 1px;
+}
+
+/* --- ▲その他の設定終了 --- */
