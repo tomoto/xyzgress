@@ -1,0 +1,1051 @@
+
+function walksound()
+ if wsw > 0 then
+  wsw = wsw -1
+ else
+  wsw = 10
+  sfx(1)
+  end
+end
+
+function crushsound()
+ if csw >0 then
+   csw = csw-1
+  else
+   csw = 10
+   sfx(2)
+ end
+end
+
+function timer_dec()
+ if bsw > 0 then
+  bsw = bsw -1
+ end
+ if csw > 0 then
+  csw = csw -1
+ end
+ if hkw > 0 then
+  hkw = hkw -1
+ end
+ if lcw > 0 then
+  lcw = lcw -1
+ end
+ if elw > 0 then
+  elw = elw -1
+ end
+ if muw > 0 then
+  muw = muw -1
+ end
+ if cdr > 0 then
+  if cdr < 40 then
+   cdr = cdr + 1
+  end
+ end
+ for i=1,#enemy do
+  if enemy[i][5] > 0 then
+   enemy[i][5] = enemy[i][5]-1
+  end
+ end
+ if minute == 100 then
+  minute = 0
+  if hour == 24 then
+   hour = 0
+   if day == 6 then
+    sfx(8)
+    rsw = 200
+    state =2
+   else
+    day = day +1
+   end
+  else
+   hour = hour+1
+  end
+ else
+  minute = minute +1
+ end
+end
+
+function burst()
+ if numburst > 0 then
+  if bsw == 0 then
+   sfx(0)
+   bsw = 30
+   cdr = 1
+   cix = cmx
+   ciy = cmy
+   dcix = 0
+   dciy = 0
+   numburst = numburst -1
+  end
+ end
+end
+
+function atari(atarix,atariy)
+ local ataridesu
+ if mget(atarix,atariy) == 5 then
+   ataridesu = 1
+ else
+   ataridesu = 0
+ end
+ return ataridesu
+end
+
+function captureope()
+  for i=1,#portals do
+   if portals[i][1]==cmx then
+    if portals[i][2]==cmy then
+      liberater=liberater+1
+      sfx(4)
+      if portals[i][10]==0 then
+       portals[i][10]=1
+       pioneer=pioneer+1
+      end
+      portals[i][6]=2
+      if portals[i][8]==1 then
+       mset(cmx,cmy,mypk)
+      else
+       mset(cmx,cmy,myp)
+      end
+    end
+   end
+  end
+end
+
+
+function caputure()
+ if mget(cmx,cmy)==4 then
+  captureope()
+ elseif mget(cmx,cmy)==20 then
+  captureope()
+ end
+end
+
+function findlastlink(sx,sy,lx,ly)
+ for j=1,#link do
+  if link[j][1] == sx then
+   if link[j][2] == sy then
+    if link[j][3] == lx then
+     if link[j][4] == ly then
+      lastlinkfound=1
+     end
+    end
+   end   
+  end
+ end
+ for j=1,#link do
+  if link[j][3] == sx then
+   if link[j][4] == sy then
+    if link[j][1] == lx then
+     if link[j][2] == ly then
+      lastlinkfound=1
+     end
+    end
+   end   
+  end
+ end
+end
+
+function createcfope(x1,y1,x2,y2,x3,y3,cfff)
+ if lastlinkfound == 1 then
+   cfmu = flr(abs(y1*(x2-x3)+y2*(x3-x1)+y3*(x1-x2))/2)
+   if cfmu <= 1 then
+    cfmu = 1
+   end
+   if cfff == 2 then
+    mu = mu + cfmu
+    illuminator=illuminator+cfmu
+    mindcontroller = mindcontroller+1
+    mucx = cx
+    mucy = cy
+    displaymu = displaymu + cfmu
+    muw= 20
+   else
+    enemymu = enemymu+cfmu
+   end
+   add (cf,{x1,y1,x2,y2,x3,y3,cfmu,cfff})
+ end
+end
+
+function createcf(cfx,cfy,cff)
+ for i=1,#link do
+  lastlinkfound = 0
+  if cfx==link[i][1] then
+   if cfy == link[i][2] then
+     findlastlink(portals[minp][1],portals[minp][2],link[i][3],link[i][4])
+     createcfope(cfx,cfy,portals[minp][1],portals[minp][2],link[i][3],link[i][4],cff)
+   end
+  end
+  if cfx==link[i][3] then
+   if cfy == link[i][4] then
+     findlastlink(portals[minp][1],portals[minp][2],link[i][1],link[i][2])
+     createcfope(cfx,cfy,portals[minp][1],portals[minp][2],link[i][1],link[i][2],cff)
+   end
+  end
+  if portals[minp][1]==link[i][1] then
+   if portals[minp][2] == link[i][2] then
+     findlastlink(cfx,cfy,link[i][3],link[i][4])
+     createcfope(link[i][1],link[i][2],cfx,cfy,link[i][3],link[i][4],cff)
+   end
+  end
+  if portals[minp][1]==link[i][3] then
+   if portals[minp][2] == link[i][4] then
+     findlastlink(cfx,cfy,link[i][1],link[i][2]) 
+     createcfope(link[i][3],link[i][4],cfx,cfy,link[i][1],link[i][2],cff)
+   end
+  end
+ end
+end
+
+
+function linkhantei(k,lhx,lhy)
+  touch = 0
+  for j=1,#link do
+    if link[j][1]==lhx then
+     if link[j][2]==lhy then
+      if link[j][3]==portals[k][1] then
+       if link[j][4]==portals[k][2] then
+        notlinkable = 1
+       end
+      end
+     end
+    end    
+    if link[j][3]==lhx then
+     if link[j][4]==lhy then
+      if link[j][1]==portals[k][1] then
+       if link[j][2]==portals[k][2] then
+        notlinkable = 1
+       end
+      end
+     end
+    end    
+  end
+  for j=1,#link do
+   x1 = link[j][1]
+   y1 = link[j][2]
+   x2 = link[j][3]
+   y2 = link[j][4]
+   x3 = lhx
+   y3 = lhy
+   x4 = portals[k][1]
+   y4 = portals[k][2]
+   ta = (x3-x4)*(y1-y3)+(y3-y4)*(x3-x1)
+   tb = (x3-x4)*(y2-y3)+(y3-y4)*(x3-x2)
+   tc = (x1-x2)*(y3-y1)+(y1-y2)*(x1-x3)
+   td = (x1-x2)*(y4-y1)+(y1-y2)*(x1-x4) 
+   if ta*tb<0 then
+    if tc*td<0 then
+    notlinkable=1
+    end
+   end
+  end
+end
+
+function createlinkope()
+ mind = 200
+ minp = 0
+ for i=1,#portals do
+  distance = sqrt((portals[i][1]-cmx)^2+(portals[i][2]-cmy)^2)
+  if distance <= mind then
+   if distance > 0 then
+    if portals[i][6] == 2 then
+     if portals[i][8] == 1 then
+      if lcw ==0 then
+       notlinkable=0
+       linkhantei(i,cmx,cmy)
+       if notlinkable==0 then
+        mind = distance
+        minp = i
+       end
+      end
+     end
+    end
+   end
+  end
+ end
+ if minp>0 then
+  lcw=20
+  portals[minp][8]=0
+  mset(portals[minp][1],portals[minp][2],myp)
+  add(link,{cmx,cmy,portals[minp][1],portals[minp][2],2})
+  displaymu = 0
+  createcf(cmx,cmy,2)
+  connecter=connecter+1
+  sfx(4)
+ end
+end
+
+function createlink()
+ if lcw==0 then
+  if mget(cmx,cmy)==myp then
+   createlinkope()
+  elseif mget(cmx,cmy)==mypk then
+   createlinkope()
+  end
+ end
+end
+
+function hackope()
+  for i=1,#portals do
+   if portals[i][1]==cmx then
+    if portals[i][2]==cmy then
+     if portals[i][7]==0 then
+      if portals[i][8]==0 then
+       portals[i][8] = flr(rnd(2))
+      end
+      if portals[i][8]==1 then
+       if portals[i][6]==1 then
+        mset(cmx,cmy,enpk)
+       elseif portals[i][6]==2 then
+        mset(cmx,cmy,mypk)
+       end
+      end
+      hkw = 20
+      hacker = hacker + 1
+      if portals[i][9]==0 then
+       portals[i][9]=1
+       explorer=explorer+1
+      end
+      sfx(5)
+      portals[i][7]=400
+      if numburst < 200 then
+       numburst = numburst+flr(rnd(4))
+      end
+     end
+    end
+   end
+  end
+end
+
+
+function hack()
+ if mget(cmx,cmy)==enp then
+  hackope()
+ elseif mget(cmx,cmy)==enpk then
+  hackope()
+ elseif mget(cmx,cmy)==myp then
+  hackope()
+ elseif mget(cmx,cmy)==mypk then
+  hackope()
+ end
+end
+
+
+function countstep()
+ for i=1,#portals do
+  if portals[i][7]>0 then
+   portals[i][7] = portals[i][7] -1
+  end
+ end
+end
+
+function move_spr()
+ if btn(0) then
+  if atari(flr(16-(cx+8)/8),cmy)==0 then
+   cx = cx +1
+   dcix = dcix +1
+   walksound()
+   dirme = myl
+   countstep()
+  else
+   crushsound()
+  end
+ elseif btn(1) then
+  if atari(flr(16-(cx)/8),cmy)==0 then
+   cx = cx -1
+   dcix = dcix -1
+   walksound()
+   dirme = myr
+   countstep()
+  else
+   crushsound()
+  end
+ elseif btn(2) then
+  if atari(cmx,flr(16-(cy+8)/8))==0 then
+   cy = cy +1
+   dciy = dciy +1
+   walksound()
+   dirme = myu
+   countstep()
+  else
+   crushsound()
+  end
+ elseif btn(3) then
+  if atari(cmx, flr(16-(cy)/8))==0 then
+   cy = cy -1
+   dciy = dciy -1
+   walksound()
+   dirme = myd
+   countstep()
+  else
+   crushsound()
+  end
+ end
+ if btn(4) then
+  burst()
+ end
+ if btn(5) then
+  createlink()
+ end
+ caputure()
+ hack()
+end
+
+function getinitportal()
+ for ix=0,63
+ do
+  for iy=0,63
+  do
+   if mget(ix,iy)==2 then
+     add(portals,{ix,iy,100,0,0,1,0,0,0,0})
+     mset(ix,iy,enp)
+   end
+  end
+ end
+end
+
+function hithantei()
+ if cdr>0 then
+  if cdr<40 then
+   for i=1,#portals do
+     local hx = portals[i][1]
+     local hy = portals[i][2]
+     local dist = flr(sqrt((hx-cix)^2 + (hy-ciy)^2)*8)+2
+     if dist == cdr then
+      if portals[i][4]==0 then
+       if portals[i][6]==1 then
+         damage = flr(1+100/(cdr+4)*2)
+         portals[i][4]=10
+         portals[i][5]=damage
+         portals[i][3] = portals[i][3]-damage
+         if portals[i][3] < 0 then
+          portals[i][3]=0
+         end
+         if portals[i][3] == 0 then
+           portals[i][6] = 0
+           for j=0,10 do
+            breaklink(portals[i][1],portals[i][2])
+           end
+           if portals[i][8]==0 then
+            mset(portals[i][1],portals[i][2],4)
+           else
+            mset(portals[i][1],portals[i][2],20)
+           end
+           sfx(3)
+         end
+       end
+      end
+     end
+   end
+  end
+ end
+end
+
+function drawhitmark()
+  for i=1,#portals do
+   if portals[i][4]>0 then
+     portals[i][4]=portals[i][4]-1
+     print(portals[i][5],(flr(portals[i][1])*8+cx-58),(flr(portals[i][2])*8+cy-58),15)
+   end
+  end
+end
+
+function drawlink()
+ for i=1,#link do
+   if i>1 then
+    if link[i][5]==1 then
+     line(link[i][1]*8+cx-56,link[i][2]*8+cy-56,link[i][3]*8+cx-56,link[i][4]*8+cy-56,enc)
+    else
+     line(link[i][1]*8+cx-56,link[i][2]*8+cy-56,link[i][3]*8+cx-56,link[i][4]*8+cy-56,myc)
+    end
+   end
+ end
+end
+
+function enemychdir(k)
+  randdir = rnd(4)
+  if randdir<1 then
+   enemy[k][3]=0.1
+   enemy[k][4]=0
+   enemy[k][6]=enr
+  elseif randdir<2 then
+   enemy[k][3]=-0.1
+   enemy[k][4]=0
+   enemy[k][6]=enl
+  elseif randdir<3 then
+   enemy[k][3]=0
+   enemy[k][4]=0.1
+   enemy[k][6]=endd
+  elseif randdir<4 then
+   enemy[k][3]=0
+   enemy[k][4]=-0.1
+   enemy[k][6]=enu
+  end 
+end
+
+function delcf()
+ for delc in all(cf) do
+  if delcx1 == delc[1] then
+   if delcy1 == delc[2] then
+    if delcx2 == delc[3] then
+     if delcy2 == delc[4] then
+      if delcx3 == delc[5] then
+       if delcy3 == delc[6] then
+        if delc[8] == 2 then
+         mu = mu - delc[7]
+        else
+         enemymu = enemymu - delc[7]
+        end
+        del (cf,delc)
+       end
+      end 
+     end
+    end
+   end
+  end
+ end
+end
+
+function breakcf(dcx1,dcy1)
+ for n=1, #cf do
+  if n<=#cf then
+   delcx1=cf[n][1]
+   delcy1=cf[n][2]
+   delcx2=cf[n][3]
+   delcy2=cf[n][4]
+   delcx3=cf[n][5]
+   delcy3=cf[n][6]
+   if delcx1==dcx1 then
+    if delcy1==dcy1 then
+     delcf()
+    end
+   end
+   if delcx2==dcx1 then
+    if delcy2==dcy1 then
+     delcf()
+    end
+   end
+   if delcx3==dcx1 then
+    if delcy3==dcy1 then
+     delcf()
+    end
+   end
+  end
+ end 
+end
+
+function dellink()
+ for dell in all(link) do
+  if delx1 == dell[1] then
+   if dely1 == dell[2] then
+    if delx2 == dell[3] then
+     if dely2 == dell[4] then
+      del (link,dell)
+     end
+    end
+   end
+  end
+ end
+end
+
+
+
+function breaklink(lx,ly)
+  for l=1,#link do
+   if l<=#link then  
+    delx1 = link[l][1]
+    dely1 = link[l][2]
+    delx2 = link[l][3]
+    dely2 = link[l][4]
+    if delx1 == lx then
+     if dely1 == ly then
+      dellink()
+      for o=0,10 do
+       breakcf(lx,ly)
+      end
+     end
+    end
+    if delx2 == lx then
+     if dely2 == ly then
+      dellink()
+      for o=0,10 do
+       breakcf(lx,ly)
+      end
+     end
+    end
+   end
+  end
+end
+
+function enemylink(elx,ely)
+ mind = 200
+ minp = 0
+ for i=1,#portals do
+  distance = sqrt((portals[i][1]-flr(elx))^2+(portals[i][2]-flr(ely))^2)
+  if distance <= mind then
+   if distance > 0 then
+    if portals[i][6] == 1 then
+       notlinkable=0
+       linkhantei(i,elx,ely)
+       if notlinkable==0 then
+        mind = distance
+        minp = i
+      end
+    end
+   end
+  end
+ end
+ if minp>0 then
+  add(link,{elx,ely,portals[minp][1],portals[minp][2],1})
+  createcf(elx,ely,1)
+ end
+end
+
+function enemyrecharge(k)
+ for j=1,#portals do
+  if portals[j][1]==flr(enemy[k][1]) then
+   if portals[j][2]==flr(enemy[k][2]) then
+    if portals[j][6]==2 then
+     if enemy[k][5] <=0 then
+      enemy[k][5]=1000
+     end
+     if enemy[k][5] <=2 then
+      portals[j][6]=1
+      portals[j][3]=100
+      if portals[j][8]==1 then
+       mset(portals[j][1],portals[j][2],enpk)
+      else
+       mset(portals[j][1],portals[j][2],enp)
+      end
+      for m=0,10 do
+       breaklink(portals[j][1],portals[j][2])
+      end
+     end
+    end
+    if portals[j][6]==1 then
+     if elw == 0 then
+      if rnd(10)<1 then
+       enemylink(flr(enemy[k][1]),flr(enemy[k][2]))
+       elw = 50
+      end
+     end
+    end
+   end
+  end
+ end
+end
+
+function moveenemy()
+ for i=1,#enemy do
+  if atari(enemy[i][1]+(enemy[i][3]+0.1)*4,enemy[i][2]+(enemy[i][4]+0.1)*4)==1 then
+   enemychdir(i)
+  end
+  if rnd(50)<1 then
+   enemychdir(i)
+  end
+  enemyrecharge(i)
+  if enemy[i][5]<=0 then
+   enemy[i][1]=enemy[i][1]+enemy[i][3]
+   enemy[i][2]=enemy[i][2]+enemy[i][4]
+  else
+     enemy[i][5] = enemy[i][5]-1
+  end
+ end
+end
+
+function drawenemy()
+ for i=1,#enemy do
+  spr(enemy[i][6],enemy[i][1]*8+cx-60,enemy[i][2]*8+cy-60)
+ end
+end
+
+function title()
+ if btn(4) then
+  state = 1
+  getinitportal()
+  sfx(5)
+ end 
+ if btn(5) then
+  state = 1
+  getinitportal()
+  sfx(5)
+ end 
+end
+
+function fuctionchange(fuc)
+ if fuc == 1 then
+  enc=11
+  myc=12
+  enp=3
+  myp=2
+  enpk=19
+  mypk=18
+  enu=1
+  myu=6
+  endd=33
+  myd=38
+  enr=17
+  myr=22
+  enl=49
+  myl=54
+  dirme = 6
+  for i=1,#enemy do
+   enemy[i][6]=1
+  end
+ else
+  enc=12
+  myc=11
+  enp=2
+  myp=3
+  enpk=18
+  mypk=19
+  enu=6
+  myu=1
+  endd=38
+  myd=33
+  enr=22
+  myr=17
+  enl=54
+  myl=49
+  dirme = 1
+  for i=1,#enemy do
+   enemy[i][6]=6
+  end
+ end 
+end
+
+function drawmu()
+ if muw > 0 then
+  print(displaymu,60-mucx+cx,60-mucy+cy,7)
+  if displaymu < 10 then
+   print("mu",66-mucx+cx,60-mucy+cy,7)
+  elseif displaymu < 100 then
+   print("mu",72-mucx+cx,60-mucy+cy,7)
+  else
+   print("mu",78-mucx+cx,60-mucy+cy,7)
+  end
+  
+ end
+end
+
+
+
+function _init()
+ cx=60 --myselfx
+ cy=60 --myselfy
+ cmx=0 --myselfxonmap
+ cmx=0 --myselfyonmap
+ wsw=10 --walk sound wait
+ bsw=30 --burster wait
+ csw=10 --crush sound wait
+ lcw=20 --link create wait
+ hkw=20  --hack display wait
+ muw=0 --mu display wait
+ elw=50 -- enemy link wait
+ fsw=5 -- faction select wait
+ rsw=100 -- result wait
+ cdr=0 -- circledia
+ cix=0 -- circlex
+ ciy=0 -- circley
+ dirme=1 --mydirection
+ dcix=0
+ dciy=0
+ numburst=10
+ mu=0
+ enemymu=0
+ day=0
+ hour=0
+ minute=0
+ hacker =0
+ liberater=0
+ connecter=0
+ mindcontroller=0
+ illuminator=0
+ explorer=0
+ pioneer=0
+ 
+ state = 0
+ portals = {}
+ hitmrk={}
+ link ={{0,0,0,0,2}}
+ cf={{0,0,0,0,0,0,0}}
+ enemy ={{10,9,0,-0.1,0,6},{30,5,0,-0.1,0,6}}
+ sfx(6)
+ enc=12
+ myc=11
+ enp=2
+ myp=3
+ enpk=18
+ mypk=19
+ enu=6
+ myu=1
+ endd=38
+ myd=33
+ enr=22
+ myr=17
+ enl=54
+ myl=49
+ self=79
+ mucx =60
+ mucy =60
+ faction = 1
+ fuctionchange(1)
+end
+
+function select()
+ if fsw>0 then
+  fsw = fsw -1
+ end
+ if fsw==0 then
+  if btn(2) then
+   if faction == 1 then
+    fsw = 5
+    faction =2
+    self =89
+    fuctionchange(faction)
+    sfx(7)
+   else
+    fsw = 5
+    faction =1
+    self =79
+    fuctionchange(faction)
+    sfx(7)
+   end
+  end
+ end
+ if fsw==0 then
+  if btn(3) then
+   if faction == 1 then
+    fsw = 5
+    faction =2
+    self =89
+    fuctionchange(faction)
+    sfx(7)
+   else
+    fsw = 5
+    faction =1
+    self =79
+    fuctionchange(faction)
+    sfx(7)
+   end
+  end
+ end 
+end
+
+
+function _update()
+ if state==0 then
+  select()
+  title()
+ end
+ if state==1 then
+  cmx = flr(16-(cx+4)/8)
+  cmy = flr(16-(cy+4)/8)
+  move_spr()
+  moveenemy()
+  timer_dec()
+ end
+ if state==2 then
+  if rsw==0 then
+   waitreset()
+  else
+   rsw = rsw -1
+  end
+ end
+end
+
+function waitreset()
+ if btn(4) then
+  run(xxgress)
+ end 
+ if btn(5) then
+  run(xxgress)
+ end 
+end
+
+
+
+
+function _draw()
+ if state==0 then
+  rectfill(0,0,128,128,0)
+  map(0,0,-500,0,150,16)
+  print ("choose your faction",20,70,7)
+  print ("resitance",50,80,12)
+  print ("enlightened",50,90,11)
+  spr(myr,38,self)
+ end
+ if state==1 then
+  rectfill(0,0,128,128,0)
+  map(0,0,cx-60,cy-60,128,16)
+  if cdr < 40 then
+   if cdr > 0 then
+    circ(64+dcix,64+dciy,cdr,9)
+   end
+  end
+  hithantei()
+  drawlink()
+  spr(dirme,60,60)
+  drawenemy()
+  drawhitmark()
+  drawmu()
+  if hkw>0 then
+   print ("hack",100,10,7)
+  else
+   print ("burster",100,10,7)
+  end 
+  print (numburst,100,20,7)
+  print ("your",50,4,7)
+  print ("mu",50,10,7)
+  print (mu,50,20,7)
+  print ("enemy",70,4,7)
+  print ("mu",70,10,7)
+  print (enemymu,70,20,7)
+  print ("day",30,10,7)
+  print (day,30,20,7)
+
+ end
+ if state==2 then
+  if mu<enemymu then
+   print ("lose",50,50,7)
+  elseif mu<enemymu+100 then
+   print ("draw",50,50,7)
+  else
+   print ("win",50,50,7)
+  end
+  if hacker>100 then
+   print ("hacker",0,120,7)
+   if hacker<150 then
+    print("bronze",80,120,7)
+    spr(7,60,118)
+   elseif hacker<300 then
+    print ("silver",80,120,7)
+    spr(23,60,118)
+   elseif hacker<450 then
+    print ("gold",80,120,7)
+    spr(39,60,118)
+   elseif hacker<800 then
+    print ("platinum",80,120,7)
+    spr(55,60,118)
+   else
+    print ("onyx",80,120,7)
+    spr(8,60,58)
+   end 
+  end
+  if liberater>20 then
+   print ("liberater",0,60,7)
+   if liberater<40 then
+    print("bronze",80,60,7)
+    spr(7,60,58)
+   elseif liberater<60 then
+    print ("silver",80,60,7)
+    spr(23,60,58)
+   elseif liberater<80 then
+    print ("gold",80,60,7)
+    spr(39,60,58)
+   elseif liberater<100 then
+    print ("platinum",80,60,7)
+    spr(55,60,58)
+   else
+    print ("onyx",80,60,7)
+    spr(8,60,58)
+   end 
+  end
+  if connecter>20 then
+   print ("connecter",0,70,7)
+   if connecter<40 then
+    print("bronze",80,70,7)
+    spr(7,60,68)
+   elseif connecter<60 then
+    print ("silver",80,70,7)
+    spr(23,60,68)
+   elseif connecter<80 then
+    print ("gold",80,70,7)
+    spr(39,60,68)
+   elseif connecter<100 then
+    print ("platinum",80,70,7)
+    spr(55,60,68)
+   else
+    print ("onyx",80,70,7)
+    spr(8,60,68)
+   end 
+  end
+  if mindcontroller/2>10 then
+   print ("mindcontroller",0,80,7)
+   if mindcontroller/2<15 then
+    print("bronze",80,80,7)
+    spr(7,60,78)
+   elseif mindcontroller/2<20 then
+    print ("silver",80,80,7)
+    spr(23,60,78)
+   elseif mindcontroller/2<30 then
+    print ("gold",80,80,7)
+    spr(39,60,78)
+   elseif mindcontroller/2<50 then
+    print ("platinum",80,80,7)
+    spr(55,60,78)
+   else
+    print ("onyx",80,80,7)
+    spr(8,60,78)
+   end 
+  end
+  if illuminator>100 then
+   print ("illuminator",0,90,7)
+   if illuminator<200 then
+    print("bronze",80,90,7)
+    spr(7,60,88)
+   elseif illuminator<300 then
+    print ("silver",80,90,7)
+    spr(23,60,88)
+   elseif illuminator<400 then
+    print ("gold",80,90,7)
+    spr(39,60,88)
+   elseif illuminator<500 then
+    print ("platinum",80,90,7)
+    spr(55,60,88)
+   else
+    print ("onyx",80,90,7)
+    spr(8,60,88)
+   end 
+  end
+  if explorer>30 then
+   print ("explorer",0,100,7)
+   if explorer<34 then
+    print("bronze",80,100,7)
+    spr(7,60,98)
+   elseif explorer<38 then
+    print ("silver",80,100,7)
+    spr(23,60,98)
+   elseif explorer<42 then
+    print ("gold",80,100,7)
+    spr(39,60,98)
+   elseif explorer<43 then
+    print ("platinum",80,100,7)
+    spr(55,60,98)
+   else
+    print ("onyx",80,100,7)
+    spr(8,60,98)
+   end 
+  end
+  if pioneer>20 then
+   print ("pioneer",0,110,7)
+   if pioneer<25 then
+    print("pioneer",80,110,7)
+    spr(7,60,108)
+   elseif pioneer<30 then
+    print ("silver",80,110,7)
+    spr(23,60,108)
+   elseif pioneer<40 then
+    print ("gold",80,110,7)
+    spr(39,60,108)
+   elseif pioneer<43 then
+    print ("platinum",80,110,7)
+    spr(55,60,108)
+   else
+    print ("onyx",80,110,7)
+    spr(8,60,108)
+   end 
+  end
+ 
+ 
+ end
+end

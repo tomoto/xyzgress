@@ -1,0 +1,103 @@
+state -- 0:faction select, 1:play, 2:end
+
+dirme -- player direction == sprite number
+cx, cy -- player position on screen, init = 60
+cmx, cmy -- player position on map
+
+cdr -- burster circle radius, range(0, 40), incremented per frame
+dcix, dciy -- burster circle center, with offset 4
+
+cix -- circle x
+ciy -- circle y
+
+
+numburst = 10
+mu
+enemymu
+minute -- incremented per frame
+hour -- 100 minutes = 3.3s
+day -- 24 hours = 80s
+
+muw -- floating mu timer
+mucx, mucy -- floating mu position
+
+
+portals {
+ {
+  x
+  y
+  remaining energy
+  damage suffer wait
+  damage suffer
+  0:owned by nobody, 1:enemy, 2:player
+  cool down counter, init by 400frames
+  whether key exists
+  if already visited
+  if already captured
+ }
+}
+hitmrk {}
+
+link {
+ {
+  0:friendly, 1:enemy,
+  x1,
+  y1,
+  x2,
+  y2,
+}
+
+cf {
+ {
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ }
+}
+
+enemy {
+ {
+  x, init=10/30
+  y, init=9/5
+  dx, init=0
+  dy, init=-0.1
+  portal attack countdown,
+  direction == sprite number
+ }
+}
+
+wsw = 10 -- walk sound wait
+bsw = 30 -- burster wait
+csw = 10 -- crush sound wait
+lcw = 10 -- link create wait
+hkw = 20 -- hack display wait
+elw = 50 -- enemy link wait
+rsw = 100 -- result wait
+
+enc = 12 -- enemy color, const per faction
+myc = 11 -- player color, const per faction
+
+myp = 3 -- player portal
+mypk = 19 -- player portal with key
+enp = 2 -- enemy portal
+enpk = 18 -- enemy portal with key
+
+myl = 49 -- player direction == sprite number, const per faction
+myr = 17 -- right
+myd = 33 -- down
+myu = 1  -- up
+enl = 54
+enr = 22
+endd = 38
+enu = 6
+
+self = 79:res, 89:enl
+
+faction	-- 1:res, 2:enl
+
+fsw = 5  -- faction select wait
+
