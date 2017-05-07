@@ -1,1 +1,77 @@
-Hello, GitHub Pages!
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>XYZGRESS</title>
+  </head>
+  <body style="margin: 40px">
+
+<!-- My text #1 -->
+
+<h1>XYZGRESS</h1>
+
+<p>(Sorry for Japanese only, for now.)</p>
+
+<h2>【これは何？】</h2>
+kotakuさんの手によるIngressをレトロゲーム化した「<a href="https://plus.google.com/108415666091685643111/posts/MXwD5CUjNJY">XXGRESS</a>」のオマージュとして、私<a href="http://tomoto335.hatenablog.com/">Tomoto</a>が作った移植版です。</p>
+<p>本家のXXGRESS、すごく面白いんですよ。面白くてしばらくハマってしまったのですが、やっているうちに「ここを変えたらもっと面白くなるはず！」とアイディアが次々出てきて、結局それらを盛り込んだ移植版を作っちゃいました。本家の素朴さは若干失われてしまいましたが、より奥深く、頭を使わされるゲームになったと思います。</p>
+
+
+<!-- Unity WebGL Player -->
+<center>
+<span style="font-size: 80%">(ゲーム画面が表示されるまで少々時間がかかるかもしれません)</span><br/>
+<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="600px" style="border-style: solid"></canvas>
+<img src="xyzgressweb/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" />
+<script type='text/javascript'>
+  var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,
+    compatibilitycheck: null,
+    backgroundColor: "#222C36",
+    splashStyle: "Light",
+    dataUrl: "xyzgressweb/Release/xyzgressweb.data",
+    codeUrl: "xyzgressweb/Release/xyzgressweb.js",
+    asmUrl: "xyzgressweb/Release/xyzgressweb.asm.js",
+    memUrl: "xyzgressweb/Release/xyzgressweb.mem",
+  };
+</script>
+<script src="xyzgressweb//Release/UnityLoader.js"></script>
+</center>
+
+<!-- My text #2 -->
+<h2>【遊び方】</h2>
+本家と同じく、
+<ul>
+<li>カーソルキー: 移動</li>
+<li>[Z]: バースター発射</li>
+<li>[X]: 近くのポータルにリンクを張る</li>
+</ul>
+あとはAGなら説明しなくてもわかってくれるハズ！
+<h2>【ゲームの目的】</h2>
+これも本家と同じ、7日目を迎えたときに相手より100MU以上多く支配していれば勝ちです。
+<h2>【強化点のハイライト】</h2>
+<ul>
+<li>難易度(敵の数)を選べます。</li>
+<li>敵が自分と同じバースターを撃ちます。</li>
+<li>リンクによるポータル強化、水没、リチャ防衛、リアキャプ妨害、廃人撃ち(敵4人モードでのみ解禁)、スーパーノヴァ、…といった実際のIngressでおなじみの戦術が使えます。やり方や活用方法は自分で見つけてください！</li>
+<li>Unity WebGLを使っているので重いかもしれません…</li>
+</ul>
+
+    <script type='text/javascript'>
+  var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    backgroundColor: "#222C36",
+    splashStyle: "Light",
+    dataUrl: "xyzgressweb/Release/xyzgressweb.data",
+    codeUrl: "xyzgressweb/Release/xyzgressweb.js",
+    asmUrl: "xyzgressweb/Release/xyzgressweb.asm.js",
+    memUrl: "xyzgressweb/Release/xyzgressweb.mem",
+  };
+</script>
+<script src="xyzgressweb/Release/UnityLoader.js"></script>
+
+  </body>
+</html>
