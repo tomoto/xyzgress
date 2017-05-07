@@ -19,9 +19,12 @@ kotakuさんの手によるIngressをレトロゲーム化した「<a href="http
 
 <!-- Unity WebGL Player -->
 <center>
-<span style="font-size: 80%">(ゲーム画面が表示されるまで少々時間がかかるかもしれません)</span><br/>
+<span style="font-size: 80%">(WebGLをサポートしたブラウザが必要です。ゲーム画面が表示されるまで多少時間がかかります。)</span><br/>
+<div>
 <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="600px" style="border-style: solid"></canvas>
 <img src="xyzgressweb/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" />
+</div>
+</center>
 <script type='text/javascript'>
   var Module = {
     TOTAL_MEMORY: 268435456,
@@ -36,7 +39,6 @@ kotakuさんの手によるIngressをレトロゲーム化した「<a href="http
   };
 </script>
 <script src="xyzgressweb//Release/UnityLoader.js"></script>
-</center>
 
 <!-- My text #2 -->
 <h2>【遊び方】</h2>
@@ -52,7 +54,7 @@ kotakuさんの手によるIngressをレトロゲーム化した「<a href="http
 <h2>【強化点のハイライト】</h2>
 <ul>
 <li>難易度(敵の数)を選べます。</li>
-<li>敵が自分と同じバースターを撃ちます。</li>
+<li>敵が若干賢くなり、自分と同じくバースターを撃ってきます。</li>
 <li>リンクによるポータル強化、CFによる沈没、リチャ防衛、リアキャプ妨害、廃人撃ち(敵4人モードでのみ解禁)、スーパーノヴァ、…といった実際のIngressでおなじみの戦術が使えるようになっています。やり方や活用方法は自分で見つけてください！</li>
 <li>張れるはずのリンクが張れないことがあるバグは修正済み(実はこれが一番直したかったところ)。</li>
 <li>Unity WebGLを使っているので重いかもしれません。最初の読み込みには10秒以上かかるかも。</li>
