@@ -58,15 +58,15 @@ public class GameController : MonoBehaviour, GameProvider
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            FinishGame(true);
-        }
-
         if (IsGameOver)
         {
             WaitForButtonAndGoBackToMenu();
-            return;
+            return; // nothing to do
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            FinishGame(true);
         }
 
         DestroyDecayedPortals();
