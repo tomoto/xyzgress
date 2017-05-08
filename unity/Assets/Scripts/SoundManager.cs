@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour {
     public AudioClip HackSound;
     public AudioClip BurstSound;
     public AudioClip LinkSound;
+    public AudioClip CFCreatedSound;
+    public AudioClip CFDestroyedSound;
 
     public AudioClip PortalDamagedSound;
     public AudioClip PortalDestroyedSound;

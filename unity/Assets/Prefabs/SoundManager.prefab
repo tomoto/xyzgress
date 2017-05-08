@@ -139,6 +139,8 @@ MonoBehaviour:
   HackSound: {fileID: 8300000, guid: e6578bb2bb5b8fa47afcaf633153e093, type: 3}
   BurstSound: {fileID: 8300000, guid: d3eba21fb78680e47929e23a242575c4, type: 3}
   LinkSound: {fileID: 8300000, guid: 7afde73587eaff648af5d3718b890c2e, type: 3}
+  CFCreatedSound: {fileID: 8300000, guid: c9a1ca9fe05fd6841bb0bbb0bf07182b, type: 3}
+  CFDestroyedSound: {fileID: 8300000, guid: bd7dfdd709dc2b945a74ef453a180b2a, type: 3}
   PortalDamagedSound: {fileID: 8300000, guid: 129226d946e0efb43b59f8a0992d767c, type: 3}
   PortalDestroyedSound: {fileID: 8300000, guid: 83f46e8609ebf7242a11e021ad2ae209,
     type: 3}

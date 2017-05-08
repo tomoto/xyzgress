@@ -186,6 +186,8 @@ public class GameController : MonoBehaviour, GameProvider
                 CFs.Add(Util.Instantiate(CFPrefab, LinkLayer).Init(cfModel));
                 achievement.CreateCF(Mathf.FloorToInt(cfModel.MU));
             }
+
+            SoundManager.GetInstance().CFCreatedSound.Play();
         }
     }
 
@@ -206,6 +208,9 @@ public class GameController : MonoBehaviour, GameProvider
 
     public void DestroyPortal(Portal portal, Faction newFaction = Faction.None)
     {
+        Faction destroyedFaction = portal.Model.Faction;
+
+        // First, process the model for links and CFs
         IList<LinkModel> destroyedLinkModels;
         IList<CFModel> destroyedCFModels;
         LinkManager.DestroyPortal(portal.Model, out destroyedLinkModels, out destroyedCFModels);
@@ -217,6 +222,9 @@ public class GameController : MonoBehaviour, GameProvider
         var achievement = portal.DestroyerAchievement ?? AchievementModel.DummyAchievement;
         achievement.DestroyPortal();
 
+        // Second, process the view for links and CFs
+
+        // CFs
         foreach (var cfs in destroyedCFs)
         {
             CFs.Remove(cfs);
@@ -224,6 +232,12 @@ public class GameController : MonoBehaviour, GameProvider
             achievement.DestroyCF();
         }
 
+        if (destroyedCFs.Any())
+        {
+            SoundManager.GetInstance().CFDestroyedSound.Play();
+        }
+
+        // Links
         foreach (var link in destroyedLinks)
         {
             Links.Remove(link);
@@ -231,9 +245,11 @@ public class GameController : MonoBehaviour, GameProvider
             achievement.DestroyLink();
         }
 
-        Scoreboard.DisplayMU(portal.Model.Faction, LinkManager.GetMU(portal.Model.Faction));
+        Scoreboard.DisplayMU(destroyedFaction, LinkManager.GetMU(destroyedFaction));
 
+        // Finally, process the portal
         CapturePortal(portal, newFaction);
+
     }
 
     public void CapturePortal(Portal portal, Faction newFaction)
