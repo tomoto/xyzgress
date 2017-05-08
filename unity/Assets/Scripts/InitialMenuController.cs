@@ -19,6 +19,7 @@ public class InitialMenuController : MonoBehaviour {
 
     private int currentStep;
     private TimeTicker keyInputRepeatTimer = new TimeTicker(GameConstants.KeyInputRepeatInterval);
+    private TimeTicker gameStartWaitTimer = new TimeTicker(GameConstants.GameStartWaitTime);
 
 	// Use this for initialization
 	void Start () {
@@ -26,23 +27,43 @@ public class InitialMenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		switch (currentStep)
+        if (currentStep == 2)
+        {
+            if (gameStartWaitTimer.IsTimeout())
+            {
+                StartGame();
+            }
+            return; // do not proceed
+        }
+
+        var input = GetInput();
+        bool valueChanged = false;
+
+        switch (currentStep)
         {
             case 0:
-                Faction = Mathf.Clamp(Faction - GetInput(), 0, 1);
+                int newFaction = Mathf.Clamp(Faction - input, 0, 1);
+                valueChanged = Faction != newFaction;
+                Faction = newFaction;
                 break;
             case 1:
-                Level = Mathf.Clamp(Level - GetInput(), 0, 2);
+                int newLevel = Mathf.Clamp(Level - input, 0, 2);
+                valueChanged = Level != newLevel;
+                Level = newLevel;
                 break;
-            case 2:
-                StartGame();
-                break;
+        }
+
+        if (valueChanged)
+        {
+            SoundManager.GetInstance().MenuMoveSound.Play();
         }
 
         UpdateArrow();
 
         if (Input.GetButtonDown(InputUtil.Button1))
         {
+            SoundManager.GetInstance().MenuSelectSound.Play();
+            gameStartWaitTimer.Start(); // only effective when transiting to step 2
             currentStep++;
         }
 

@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: e92d4b9a216f9ae4e9e07b02a55f66ab
+timeCreated: 1494255645
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - MenuMoveSound: {fileID: 8300000, guid: ef1cee2811bfb37419fa142a392e1722, type: 3}
+  - MenuSelectSound: {fileID: 8300000, guid: ec94a62ace5b0634e9b4f381bb060662, type: 3}
+  - WalkSound: {fileID: 8300000, guid: acd5bb37c28b52144b65619de7a4fcd7, type: 3}
+  - BumpSound: {fileID: 8300000, guid: 5f0f8bb9ec1d51c4f8e5d15df4f15e52, type: 3}
+  - HackSound: {fileID: 8300000, guid: e6578bb2bb5b8fa47afcaf633153e093, type: 3}
+  - BurstSound: {fileID: 8300000, guid: d3eba21fb78680e47929e23a242575c4, type: 3}
+  - LinkSound: {fileID: 8300000, guid: 7afde73587eaff648af5d3718b890c2e, type: 3}
+  - PortalDamagedSound: {fileID: 8300000, guid: 129226d946e0efb43b59f8a0992d767c,
+      type: 3}
+  - PortalDestroyedSound: {fileID: 8300000, guid: 83f46e8609ebf7242a11e021ad2ae209,
+      type: 3}
+  - PortalCapturedSound: {fileID: 8300000, guid: bf1b11b79644f994a951cdfcb754f6b5,
+      type: 3}
+  - PortalRechargedSound: {fileID: 8300000, guid: bf1b11b79644f994a951cdfcb754f6b5,
+      type: 3}
+  - DayUpSound: {fileID: 8300000, guid: b8543f6f89353524a9980dd5e4969ac4, type: 3}
+  - FinishSound: {fileID: 8300000, guid: 2dd73b02340708e4780e7e23d63b0c9f, type: 3}
+  - LevelUpSound: {fileID: 8300000, guid: d0dc3363ad93c1c4690f943e81a0f58f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

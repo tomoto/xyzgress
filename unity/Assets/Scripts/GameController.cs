@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour, GameProvider
     public AchievementModel PlayerAchievement { get { return playerAchievement; } }
 
     private float startTime;
+    private int days;
     public bool IsGameOver { get; private set; }
 
     private TimeTicker gameOverScreenWaitTimer = new TimeTicker(GameConstants.GameOverScreenWaitTime);
@@ -70,17 +71,32 @@ public class GameController : MonoBehaviour, GameProvider
 
         DestroyDecayedPortals();
 
-        int days = Mathf.FloorToInt((Time.time - startTime) / GameConstants.SecondsPerDay);
-        Scoreboard.DisplayDays(days);
-
-        if (days >= GameConstants.DaysPerGame)
+        int newDays = Mathf.FloorToInt((Time.time - startTime) / GameConstants.SecondsPerDay);
+        if (newDays > days)
         {
-            FinishGame(false);
+            days = newDays;
+
+            Scoreboard.DisplayDays(days);
+
+            if (days >= GameConstants.DaysPerGame)
+            {
+                FinishGame(false);
+            }
+            else
+            {
+                SoundManager.GetInstance().DayUpSound.Play();
+            }
         }
 
         if (PlayerAchievement.IsAPChanged)
         {
             Scoreboard.DisplayLevelAndAP(PlayerAchievement.Level, PlayerAchievement.AP);
+
+            if (PlayerAchievement.IsLevelChanged)
+            {
+                SoundManager.GetInstance().LevelUpSound.Play();
+            }
+
             PlayerAchievement.ResetAPChanged();
         }
     }
@@ -240,6 +256,7 @@ public class GameController : MonoBehaviour, GameProvider
 
         Resultboard.DisplayFinalResult(finalResult, new MedalHelper(PlayerAchievement).Results);
         Resultboard.Show();
+        SoundManager.GetInstance().FinishSound.Play();
 
         IsGameOver = true;
         if (!escape)

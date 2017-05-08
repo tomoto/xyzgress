@@ -21,4 +21,6 @@ public class GameConstants {
     // UI parameters
     public const float KeyInputRepeatInterval = 0.2f;
     public const float GameOverScreenWaitTime = 3;
+    public const float GameStartWaitTime = 1;
+    public const float PlayerFootstepDistance = 1;
 }

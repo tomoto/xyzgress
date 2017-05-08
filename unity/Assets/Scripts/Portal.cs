@@ -116,6 +116,11 @@ public class Portal : MonoBehaviour {
             if (Energy == 0)
             {
                 DestroyerAchievement = burst.OwnerAchievement;
+
+                if (burst.Faction == Faction.Player)
+                {
+                    SoundManager.GetInstance().PortalDestroyedSound.Play();
+                }
             }
         }
     }

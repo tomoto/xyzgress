@@ -21,6 +21,7 @@ namespace Game.Model
         public int AP { get; private set; }
         public int Level { get; private set; }
         public bool IsAPChanged { get; private set; }
+        public bool IsLevelChanged { get; private set; }
 
         private ICollection<PortalModel> visitedPortals = new HashSet<PortalModel>();
         private ICollection<PortalModel> capturedPortals = new HashSet<PortalModel>();
@@ -117,6 +118,7 @@ namespace Game.Model
         public void ResetAPChanged()
         {
             IsAPChanged = false;
+            IsLevelChanged = false;
         }
 
 
@@ -126,6 +128,7 @@ namespace Game.Model
             if (Level < RequiredAPForLevel.Length && AP >= RequiredAPForLevel[Level])
             {
                 Level++;
+                IsLevelChanged = true;
             }
         }
     }

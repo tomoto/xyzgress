@@ -12,6 +12,8 @@ public abstract class AgentBase : MonoBehaviour
 
     private TimeTicker rechargeTimer = new TimeTicker(GameConstants.RechargeInterval);
 
+    private bool ShouldSound { get { return SelfFaction == Faction.Player; } }
+
     protected AgentBase Init(GameProvider gameProvider)
     {
         GameProvider = gameProvider;
@@ -46,6 +48,10 @@ public abstract class AgentBase : MonoBehaviour
     protected void FireBurster()
     {
         CurrentBurst = GameProvider.FireBurster(SelfFaction, transform.position, Achievement);
+        if (ShouldSound)
+        {
+            SoundManager.GetInstance().BurstSound.Play();
+        }
     }
 
     protected void TryCaptureOrRecharge(Portal portal, AchievementModel achievement)
@@ -55,6 +61,10 @@ public abstract class AgentBase : MonoBehaviour
             GameProvider.CapturePortal(portal, SelfFaction);
 
             achievement.Capture(portal.Model);
+            if (ShouldSound)
+            {
+                SoundManager.GetInstance().PortalCapturedSound.Play();
+            }
         }
         else if (portal.Model.Faction == SelfFaction)
         {
@@ -64,6 +74,10 @@ public abstract class AgentBase : MonoBehaviour
                 rechargeTimer.Start();
 
                 achievement.Recharge();
+                if (ShouldSound)
+                {
+                    SoundManager.GetInstance().PortalRechargedSound.Play();
+                }
             }
         }
     }

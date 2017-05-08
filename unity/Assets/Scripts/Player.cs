@@ -17,6 +17,7 @@ public class Player : AgentBase
 
     private int prevDX;
     private int prevDY;
+    private float walkedDistance;
 
     public new Player Init(GameProvider gameProvider)
     {
@@ -98,10 +99,31 @@ public class Player : AgentBase
             }
 
             transform.rotation = Util.Get4WayRotation(dx, dy);
+
+            walkedDistance += Time.deltaTime * Speed;
+            if (walkedDistance >= GameConstants.PlayerFootstepDistance) {
+                SoundManager.GetInstance().WalkSound.Play(0.3f);
+                walkedDistance = 0;
+            }
         }
 
         var rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(dx, dy) * Speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        walkedDistance = 0; // reset the walk sound interval timer
+
+        if (collision.collider.GetComponent<AgentBase>() != null)
+        {
+            SoundManager.GetInstance().BumpSound.Play();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        walkedDistance = 0; // reset the walk sound interval timer
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -152,6 +174,7 @@ public class Player : AgentBase
             GameProvider.Scoreboard.DisplayBursters(Inventory.Bursters);
             GameProvider.Scoreboard.DisplayHack();
             Achievement.Hack(portal.Model);
+            SoundManager.GetInstance().HackSound.Play();
         }
     }
 
@@ -169,6 +192,7 @@ public class Player : AgentBase
             GameProvider.CreateLink(Faction.Player, Inventory, CurrentPortal, targetPortal, Achievement);
             Inventory.RemoveKey(targetPortal.Model);
             targetPortal.SetHasKey(false);
+            SoundManager.GetInstance().LinkSound.Play();
         }
     }
 
