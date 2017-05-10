@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDown: 15
-  KeyDropRate: 0.5
+  KeyDropRate: 0.6
   BursterDropRate: 4
   FloatingDamageTextPrefab: {fileID: 114895496951064998, guid: 5c179c70f153f564fac6e1f78a035d60,
     type: 2}
