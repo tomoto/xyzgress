@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\AgentBase.cs" />
     <Compile Include="Assets\Scripts\Burst.cs" />
     <Compile Include="Assets\Scripts\CF.cs" />
+    <Compile Include="Assets\Scripts\DefaultBurst.cs" />
     <Compile Include="Assets\Scripts\EnemyAgent.cs" />
     <Compile Include="Assets\Scripts\FactionManager.cs" />
     <Compile Include="Assets\Scripts\FlashOnChangeText.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Assets\Scripts\Model\LinkModel.cs" />
     <Compile Include="Assets\Scripts\Model\PortalModel.cs" />
     <Compile Include="Assets\Scripts\NPCAgentBase.cs" />
+    <Compile Include="Assets\Scripts\PixelatedBurst.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\Scripts\Resultboard.cs" />

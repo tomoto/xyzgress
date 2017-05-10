@@ -1495,7 +1495,7 @@ MonoBehaviour:
   CFPrefab: {fileID: 114543143571063260, guid: 49961b5e75123ba4896aaebb7dac2c6a, type: 2}
   FloatingMUPrefab: {fileID: 114011691519370612, guid: 6fa87687436fd704bb3f4dd0313ff6a3,
     type: 2}
-  BurstPrefab: {fileID: 114713505837254842, guid: 7deecbdb77ba7d64fa391ee1e352aede,
+  BurstPrefab: {fileID: 114862038734847550, guid: 8c00f41e2763cae43b11457e89d8a5ea,
     type: 2}
   PlayerPrefab: {fileID: 114437885860388494, guid: fd1cebd53e5532d43a328ba962590fe3,
     type: 2}
