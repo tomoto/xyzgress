@@ -136,7 +136,7 @@ namespace Game.Model
         public void DestroyPortal(PortalModel portal, out IList<LinkModel> destroyedLinksResult, out IList<CFModel> destroyedCFsResult)
         {
             var destroyedLinks = links.Where(link => link.IsConnecting(portal)).ToList();
-            var destroyedCFs = cfs.Where(cf => destroyedLinks.Any(link => cf.Contains(link))).ToList();
+            var destroyedCFs = cfs.Where(cf => destroyedLinks.Any(cf.Contains)).ToList();
 
             foreach (var link in destroyedLinks)
             {

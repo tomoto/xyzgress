@@ -157,7 +157,7 @@ public class GameController : MonoBehaviour, GameProvider
     public IEnumerable<Portal> FindLinkablePortals(Faction faction, KeyInventoryModel inventory, Portal source)
     {
         var linkablePortalModels = LinkManager.FindLinkablePortals(faction, inventory, source.Model);
-        return linkablePortalModels.Select(p => ModelToView(p));
+        return linkablePortalModels.Select(ModelToView);
     }
 
     public void CreateLink(Faction faction, KeyInventoryModel inventory, Portal source, Portal target, AchievementModel achievement)
@@ -214,8 +214,8 @@ public class GameController : MonoBehaviour, GameProvider
         IList<LinkModel> destroyedLinkModels;
         IList<CFModel> destroyedCFModels;
         LinkManager.DestroyPortal(portal.Model, out destroyedLinkModels, out destroyedCFModels);
-        var destroyedCFs = destroyedCFModels.Select(m => ModelToView(m)).ToList();
-        var destroyedLinks = destroyedLinkModels.Select(m => ModelToView(m)).ToList();
+        var destroyedCFs = destroyedCFModels.Select(ModelToView).ToList();
+        var destroyedLinks = destroyedLinkModels.Select(ModelToView).ToList();
 
         Debug.Log(string.Format("{0} links and {1} CFs ({2} MUs) are destroyed.", destroyedLinkModels.Count(), destroyedCFModels.Count(), destroyedCFModels.Sum(cf => cf.MU)));
 
