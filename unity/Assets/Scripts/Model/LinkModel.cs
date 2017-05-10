@@ -54,8 +54,8 @@ namespace Game.Model
             var b2 = other.Target.Position;
 
             return
-                Vector3.Cross(a2 - a1, b1 - a1).z * Vector3.Cross(a2 - a1, b2 - a1).z < -float.Epsilon &&
-                Vector3.Cross(b2 - b1, a1 - b1).z * Vector3.Cross(b2 - b1, a2 - b1).z < -float.Epsilon;
+                Vector3.Cross(a2 - a1, b1 - a1).z * Vector3.Cross(a2 - a1, b2 - a1).z < float.Epsilon &&
+                Vector3.Cross(b2 - b1, a1 - b1).z * Vector3.Cross(b2 - b1, a2 - b1).z < float.Epsilon;
         }
 
         public override string ToString()
