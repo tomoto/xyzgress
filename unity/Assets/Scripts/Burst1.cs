@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Model;
 
-public class DefaultBurst : Burst {
+public class Burst1 : Burst {
 
 	// Use this for initialization
 	protected override void Start() {

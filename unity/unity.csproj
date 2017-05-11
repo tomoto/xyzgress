@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WebGL:20</UnityBuildTarget>
     <UnityVersion>5.5.0p2</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -80,8 +82,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AgentBase.cs" />
     <Compile Include="Assets\Scripts\Burst.cs" />
+    <Compile Include="Assets\Scripts\Burst1.cs" />
     <Compile Include="Assets\Scripts\CF.cs" />
-    <Compile Include="Assets\Scripts\DefaultBurst.cs" />
     <Compile Include="Assets\Scripts\EnemyAgent.cs" />
     <Compile Include="Assets\Scripts\FactionManager.cs" />
     <Compile Include="Assets\Scripts\FlashOnChangeText.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="Assets\Scripts\GameProvider.cs" />
     <Compile Include="Assets\Scripts\InitialMenuController.cs" />
     <Compile Include="Assets\Scripts\InputUtil.cs" />
+    <Compile Include="Assets\Scripts\Link2.cs" />
+    <Compile Include="Assets\Scripts\Link1.cs" />
     <Compile Include="Assets\Scripts\Link.cs" />
     <Compile Include="Assets\Scripts\MedalHelper.cs" />
     <Compile Include="Assets\Scripts\MedalRow.cs" />
@@ -105,7 +109,7 @@
     <Compile Include="Assets\Scripts\Model\LinkModel.cs" />
     <Compile Include="Assets\Scripts\Model\PortalModel.cs" />
     <Compile Include="Assets\Scripts\NPCAgentBase.cs" />
-    <Compile Include="Assets\Scripts\PixelatedBurst.cs" />
+    <Compile Include="Assets\Scripts\Burst2.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\Scripts\Resultboard.cs" />

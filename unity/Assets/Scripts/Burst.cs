@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Model;
 
-public class Burst : MonoBehaviour {
+public abstract class Burst : MonoBehaviour {
     public float MaxRadius = 3.0f;
     public float Velocity = 3.0f;
 
