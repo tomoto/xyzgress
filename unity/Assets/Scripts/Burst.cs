@@ -16,7 +16,7 @@ public abstract class Burst : MonoBehaviour {
     {
         Faction = faction;
         OwnerAchievement = ownerAchievement;
-        transform.position = position;
+        transform.position = transform.position.Set2D(position);
         return this;
     }
 

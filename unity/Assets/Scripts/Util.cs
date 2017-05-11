@@ -66,10 +66,7 @@ public static class Util {
 
     public static void DrawPixelatedLine(int x1, int y1, int x2, int y2, System.Action<int, int> setPixelFunc)
     {
-        int idx = Mathf.Abs(x2 - x1);
-        int idy = Mathf.Abs(y2 - y1);
-        int stepCount = Mathf.Max(idx, idy);
-
+        int stepCount = Mathf.Max(Mathf.Abs(x2 - x1), Mathf.Abs(y2 - y1)) + 1;
         float dx = (x2 - x1) / (float)stepCount;
         float dy = (y2 - y1) / (float)stepCount;
         float x = x1;
@@ -77,7 +74,7 @@ public static class Util {
 
         for (int i = 0; i < stepCount; i++)
         {
-            setPixelFunc(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
+            setPixelFunc(Mathf.FloorToInt(x), Mathf.FloorToInt(y));
             x += dx;
             y += dy;
         }

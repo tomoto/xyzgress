@@ -46,8 +46,6 @@ public class Burst2 : Burst {
 
         var r = Mathf.FloorToInt(Radius * 8);
 
-        GetComponent<MeshRenderer>().material.renderQueue = 3001;
-
         var texture = BurstTextures[r];
         GetComponent<MeshRenderer>().material.mainTexture = texture;
         transform.localScale = new Vector2(texture.width, texture.height) / Util.PixelsPerUnit;
