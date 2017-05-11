@@ -47,36 +47,42 @@ public static class Util {
         return texture;
     }
 
-    public static void DrawPixelatedCircle(int cx, int cy, int r, System.Action<int, int> setPixelFunc)
+    public static void DrawPixelatedCircle(float cx, float cy, float r, System.Action<int, int> setPixelFunc)
     {
         var y0 = r;
         for (var x = 0; x < r; x++)
         {
-            var y1 = Mathf.FloorToInt(Mathf.Sqrt((r * r) - (x + 1) * (x + 1)));
+            var y1 = Mathf.Sqrt((r * r) - (x + 1) * (x + 1));
             for (var y = y1; y < Mathf.Max(y0, y1 + 1); y++)
             {
-                setPixelFunc(cx + x, cy + y);
-                setPixelFunc(cx - x, cy + y);
-                setPixelFunc(cx + x, cy - y);
-                setPixelFunc(cx - x, cy - y);
+                setPixelFunc(Mathf.FloorToInt(cx + x), Mathf.FloorToInt(cy + y));
+                setPixelFunc(Mathf.FloorToInt(cx - x), Mathf.FloorToInt(cy + y));
+                setPixelFunc(Mathf.FloorToInt(cx + x), Mathf.FloorToInt(cy - y));
+                setPixelFunc(Mathf.FloorToInt(cx - x), Mathf.FloorToInt(cy - y));
             }
             y0 = y1;
         }
     }
 
-    public static void DrawPixelatedLine(int x1, int y1, int x2, int y2, System.Action<int, int> setPixelFunc)
+    public static void DrawPixelatedLine(Vector2 p1, Vector2 p2, System.Action<int, int> setPixelFunc)
     {
-        int stepCount = Mathf.Max(Mathf.Abs(x2 - x1), Mathf.Abs(y2 - y1)) + 1;
-        float dx = (x2 - x1) / (float)stepCount;
-        float dy = (y2 - y1) / (float)stepCount;
-        float x = x1;
-        float y = y1;
+        int stepCount = Mathf.FloorToInt(Mathf.Max(Mathf.Abs(p2.x - p1.x), Mathf.Abs(p2.y - p1.y)) + 1);
+        var d = (p2 - p1) / stepCount;
+        var p = p1;
 
         for (int i = 0; i < stepCount; i++)
         {
-            setPixelFunc(Mathf.FloorToInt(x), Mathf.FloorToInt(y));
-            x += dx;
-            y += dy;
+            setPixelFunc(Mathf.FloorToInt(p.x), Mathf.FloorToInt(p.y));
+            p += d;
         }
+    }
+
+    public static Rect GetBoundingRect(Vector2 p1, Vector2 p2)
+    {
+        var x = Mathf.Min(p1.x, p2.x);
+        var y = Mathf.Min(p1.y, p2.y);
+        var w = Mathf.Abs(p2.x - p1.x);
+        var h = Mathf.Abs(p2.y - p1.y);
+        return new Rect(x, y, w, h);
     }
 }

@@ -9,27 +9,27 @@ public class Link2 : Link
 
     // Use this for initialization
     void Start() {
-        int x1 = (int)(Model.Source.Position.x * Util.PixelsPerUnit);
-        int y1 = (int)(Model.Source.Position.y * Util.PixelsPerUnit);
-        int x2 = (int)(Model.Target.Position.x * Util.PixelsPerUnit);
-        int y2 = (int)(Model.Target.Position.y * Util.PixelsPerUnit);
-        int x0 = Mathf.Min(x1, x2) - 1;
-        int y0 = Mathf.Min(y1, y2) - 1;
-        int w = Mathf.Abs(x2 - x1) + 3;
-        int h = Mathf.Abs(y2 - y1) + 3;
-        var texture = Util.CreateTexture(w, h);
+        var p1 = Model.Source.Position * Util.PixelsPerUnit;
+        var p2 = Model.Target.Position * Util.PixelsPerUnit;
+        Rect b = Util.GetBoundingRect(p1, p2);
+
+        // add margin to the bounding box
+        b.position -= new Vector2(1, 1);
+        b.size += new Vector2(3, 3);
+
+        var texture = Util.CreateTexture((int)b.width, (int)b.height);
         var color = FactionManager.GetInstance().GetSolidMaterial(Model.Faction).color;
-        Util.DrawPixelatedLine(x1 - x0, y1 - y0, x2 - x0, y2 - y0, (x, y) => texture.SetPixel(x, y, color));
+        Util.DrawPixelatedLine(p1 - b.position, p2 - b.position, (x, y) => texture.SetPixel(x, y, color));
         texture.filterMode = FilterMode.Point;
         texture.Apply();
 
         GetComponent<MeshRenderer>().material.mainTexture = texture;
-        transform.position = new Vector3((x0 + w / 2.0f) / Util.PixelsPerUnit, (y0 + h / 2.0f) / Util.PixelsPerUnit, transform.position.z);
-        transform.localScale = new Vector3(w, h, 1) / Util.PixelsPerUnit;
+        transform.position = transform.position.Set2D(b.center / Util.PixelsPerUnit);
+        transform.localScale = transform.localScale.Set2D(b.size / Util.PixelsPerUnit);
     }
 
     // Update is called once per frame
     void Update() {
-        // TODO
+        // Nothing to do
 	}
 }

@@ -18,7 +18,7 @@ public class Burst2 : Burst {
         var rr = Mathf.CeilToInt(maxRadius * Util.PixelsPerUnit);
         var textures = new Texture2D[rr];
 
-        for (int r = 0; r < rr; r++)
+        for (int r = 1; r < rr; r++)
         {
             var texture = Util.CreateTexture(r * 2, r * 2);
             Util.DrawPixelatedCircle(r, r, r, (x, y) => texture.SetPixel(x, y, c));
@@ -26,6 +26,8 @@ public class Burst2 : Burst {
             texture.Apply();
             textures[r] = texture;
         }
+
+        textures[0] = textures[1]; // trick to fill in radius 0
 
         return textures;
     }

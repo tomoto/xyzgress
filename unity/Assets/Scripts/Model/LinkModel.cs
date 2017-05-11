@@ -45,6 +45,7 @@ namespace Game.Model
         {
             if (IsConnecting(other))
             {
+                // connection is ok
                 return false;
             }
 
@@ -52,10 +53,27 @@ namespace Game.Model
             var a2 = Target.Position;
             var b1 = other.Source.Position;
             var b2 = other.Target.Position;
+            var a12 = a2 - a1;
+            var b12 = b2 - b1;
 
-            return
-                Vector3.Cross(a2 - a1, b1 - a1).z * Vector3.Cross(a2 - a1, b2 - a1).z < float.Epsilon &&
-                Vector3.Cross(b2 - b1, a1 - b1).z * Vector3.Cross(b2 - b1, a2 - b1).z < float.Epsilon;
+            var p = Vector3.Cross(a12, b1 - a1).z * Vector3.Cross(a12, b2 - a1).z;
+            var q = Vector3.Cross(b12, a1 - b1).z * Vector3.Cross(b12, a2 - b1).z;
+
+            if (Mathf.Abs(p) <= float.Epsilon && Mathf.Abs(q) <= float.Epsilon)
+            {
+                // parallel is OK (hack)
+                return false;
+            }
+            else if (p <= float.Epsilon && q <= float.Epsilon)
+            {
+                // cross, inclusive
+                return true;
+            }
+            else
+            {
+                // OK
+                return false;
+            }
         }
 
         public override string ToString()
