@@ -20,8 +20,8 @@ public class Burst2 : Burst {
 
         for (int r = 1; r < rr; r++)
         {
-            var texture = Util.CreateTexture(r * 2, r * 2);
-            Util.DrawPixelatedCircle(r, r, r, (x, y) => texture.SetPixel(x, y, c));
+            var texture = Util.CreateTexture(r * 2 + 2, r * 2 + 2);
+            Util.DrawPixelatedCircle(r + 1, r + 1, r, (x, y) => texture.SetPixel(x, y, c));
             texture.filterMode = FilterMode.Point;
             texture.Apply();
             textures[r] = texture;

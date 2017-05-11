@@ -47,18 +47,18 @@ public static class Util {
         return texture;
     }
 
-    public static void DrawPixelatedCircle(float cx, float cy, float r, System.Action<int, int> setPixelFunc)
+    public static void DrawPixelatedCircle(int cx, int cy, int r, System.Action<int, int> setPixelFunc)
     {
         var y0 = r;
         for (var x = 0; x < r; x++)
         {
-            var y1 = Mathf.Sqrt((r * r) - (x + 1) * (x + 1));
+            var y1 = Mathf.FloorToInt(Mathf.Sqrt((r * r) - (x + 1) * (x + 1)));
             for (var y = y1; y < Mathf.Max(y0, y1 + 1); y++)
             {
-                setPixelFunc(Mathf.FloorToInt(cx + x), Mathf.FloorToInt(cy + y));
-                setPixelFunc(Mathf.FloorToInt(cx - x), Mathf.FloorToInt(cy + y));
-                setPixelFunc(Mathf.FloorToInt(cx + x), Mathf.FloorToInt(cy - y));
-                setPixelFunc(Mathf.FloorToInt(cx - x), Mathf.FloorToInt(cy - y));
+                setPixelFunc(cx + x, cy + y);
+                setPixelFunc(cx - x, cy + y);
+                setPixelFunc(cx + x, cy - y);
+                setPixelFunc(cx - x, cy - y);
             }
             y0 = y1;
         }
