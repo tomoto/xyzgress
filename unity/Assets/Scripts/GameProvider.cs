@@ -14,7 +14,7 @@ public interface GameProvider {
     Camera MainCamera { get; }
     Scoreboard Scoreboard { get; }
 
-    Burst FireBurster(Faction faction, Vector2 position, AchievementModel ownerAchievement);
+    Burst FireBurster(Faction faction, Vector2 position, AchievementModel ownerAchievement, float velocity);
 
     void CapturePortal(Portal portal, Faction newFaction);
 

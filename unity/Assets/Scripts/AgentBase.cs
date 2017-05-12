@@ -45,9 +45,9 @@ public abstract class AgentBase : MonoBehaviour
         return CurrentBurst == null || !CurrentBurst.IsActive;
     }
 
-    protected void FireBurster()
+    protected void FireBurster(float velocity)
     {
-        CurrentBurst = GameProvider.FireBurster(SelfFaction, transform.position, Achievement);
+        CurrentBurst = GameProvider.FireBurster(SelfFaction, transform.position, Achievement, velocity);
         if (ShouldSound)
         {
             SoundManager.GetInstance().BurstSound.Play();

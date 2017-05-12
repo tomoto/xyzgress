@@ -202,7 +202,7 @@ public class Player : AgentBase
         {
             Inventory.AddBursters(-1);
             GameProvider.Scoreboard.DisplayBursters(Inventory.Bursters);
-            FireBurster();
+            FireBurster(GameConstants.PlayerBursterVelocityByLevel(Achievement.Level));
         }
     }
 }

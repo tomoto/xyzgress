@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,13 @@ public class GameConstants {
     public const float RechargeInterval = 1;
     public const int InitialPlayerBursters = 10;
     public const int MaxBurstersInInventory = 200;
+
+    public static float PlayerBursterVelocityByLevel(int level)
+    {
+        return level + 1;
+    }
+
+    public static float NPCBursterVelocity = 3.0f;
 
     // Game objects
     public const string MainCamera = "Main Camera";

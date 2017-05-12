@@ -136,7 +136,7 @@ public abstract class NPCAgentBase : AgentBase
     {
         if (IsBursterReady())
         {
-            FireBurster();
+            FireBurster(GameConstants.NPCBursterVelocity);
         }
     }
 

@@ -5,18 +5,19 @@ using Game.Model;
 
 public abstract class Burst : MonoBehaviour {
     public float MaxRadius = 3.0f;
-    public float Velocity = 3.0f;
 
+    public float Velocity { get; private set; }
     public Faction Faction { get; private set; }
     public AchievementModel OwnerAchievement { get; private set; }
     public float Radius { get; protected set; }
     public bool IsActive { get; private set; }
 
-    public Burst Init(Faction faction, Vector2 position, AchievementModel ownerAchievement)
+    public Burst Init(Faction faction, Vector2 position, AchievementModel ownerAchievement, float velocity)
     {
         Faction = faction;
         OwnerAchievement = ownerAchievement;
         transform.position = transform.position.Set2D(position);
+        Velocity = velocity;
         return this;
     }
 

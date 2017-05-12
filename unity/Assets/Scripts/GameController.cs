@@ -257,9 +257,9 @@ public class GameController : MonoBehaviour, GameProvider
         portal.Capture(newFaction);
     }
 
-    public Burst FireBurster(Faction faction, Vector2 position, AchievementModel ownerAchievement)
+    public Burst FireBurster(Faction faction, Vector2 position, AchievementModel ownerAchievement, float velocity)
     {
-        return Util.Instantiate(BurstPrefab, AgentLayer).Init(faction, position, ownerAchievement);
+        return Util.Instantiate(BurstPrefab, AgentLayer).Init(faction, position, ownerAchievement, velocity);
     }
 
     private void FinishGame(Boolean escape)
