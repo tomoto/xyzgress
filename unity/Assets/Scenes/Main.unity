@@ -1873,6 +1873,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114946361869191604, guid: 1ac47bb1dabedf444993973916db13bc,
+        type: 2}
+      propertyPath: WelcomeBackVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cffc840a398419489e173e8dc422bb2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ac47bb1dabedf444993973916db13bc, type: 2}
   m_IsPrefabParent: 0

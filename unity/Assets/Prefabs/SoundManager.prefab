@@ -150,3 +150,4 @@ MonoBehaviour:
   DayUpSound: {fileID: 8300000, guid: b8543f6f89353524a9980dd5e4969ac4, type: 3}
   FinishSound: {fileID: 8300000, guid: 2dd73b02340708e4780e7e23d63b0c9f, type: 3}
   LevelUpSound: {fileID: 8300000, guid: d0dc3363ad93c1c4690f943e81a0f58f, type: 3}
+  WelcomeBackVoice: {fileID: 8300000, guid: 2cffc840a398419489e173e8dc422bb2, type: 3}

@@ -19,23 +19,33 @@ public class InitialMenuController : MonoBehaviour {
 
     private int currentStep;
     private TimeTicker keyInputRepeatTimer = new TimeTicker(GameConstants.KeyInputRepeatInterval);
-    private TimeTicker gameStartWaitTimer = new TimeTicker(GameConstants.GameStartWaitTime);
+    private TimeTicker gameStartWaitTimer;
+    private GameObject Mask;
 
 	// Use this for initialization
 	void Start () {
+        Mask = transform.Find("Mask").gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (currentStep == 2)
+        // Transitive state
+        switch (currentStep)
         {
-            if (gameStartWaitTimer.IsTimeout())
-            {
-                StartGame();
-            }
-            return; // do not proceed
+            case 2:
+                gameStartWaitTimer = new TimeTicker(2.0f).Start();
+                Mask.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                StartCoroutine(PlaySoundAfterSeconds(SoundManager.GetInstance().WelcomeBackVoice, 0.7f, 1.5f));
+                DontDestroyOnLoad(SoundManager.GetInstance());
+                currentStep++;
+                return; // do not proceed
+            case 3:
+                Mask.transform.localScale = Mask.transform.localScale * (1 + Time.deltaTime * 5);
+                if (gameStartWaitTimer.IsTimeout()) StartGame();
+                return; // do not proceed
         }
 
+        // Interactive state
         var input = GetInput();
         bool valueChanged = false;
 
@@ -63,7 +73,6 @@ public class InitialMenuController : MonoBehaviour {
         if (Input.GetButtonDown(InputUtil.Button1))
         {
             SoundManager.GetInstance().MenuSelectSound.Play();
-            gameStartWaitTimer.Start(); // only effective when transiting to step 2
             currentStep++;
         }
 
@@ -72,6 +81,12 @@ public class InitialMenuController : MonoBehaviour {
             currentStep--;
         }
 	}
+
+    private IEnumerator PlaySoundAfterSeconds(AudioClip sound, float seconds, float volume)
+    {
+        yield return new WaitForSeconds(seconds);
+        sound.Play(volume);
+    }
 
     private void UpdateArrow()
     {

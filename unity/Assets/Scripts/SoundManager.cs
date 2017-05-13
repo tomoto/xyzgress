@@ -38,6 +38,8 @@ public class SoundManager : MonoBehaviour {
     public AudioClip FinishSound;
     public AudioClip LevelUpSound;
 
+    public AudioClip WelcomeBackVoice;
+
 	// Use this for initialization
 	void Start () {
 		
