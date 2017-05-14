@@ -44,6 +44,8 @@ public class GameController : MonoBehaviour, GameProvider
 
     // Use this for initialization
     void Start() {
+        InputUtil.Clear();
+
         MainCamera = GameObject.Find(GameConstants.MainCamera).GetComponent<Camera>();
         Scoreboard = transform.Find("Scoreboard").GetComponent<Scoreboard>();
         Resultboard = transform.Find("Resultboard").GetComponent<Resultboard>();
@@ -104,7 +106,7 @@ public class GameController : MonoBehaviour, GameProvider
     private void WaitForButtonAndGoBackToMenu()
     {
         if (gameOverScreenWaitTimer.IsTimeout() &&
-                (Input.GetButtonDown(InputUtil.Button1) || Input.GetButtonDown(InputUtil.Button2)))
+                (InputUtil.GetButtonDown(0) || InputUtil.GetButtonDown(1)))
         {
             SceneManager.LoadScene(GameConstants.MenuScene);
         }

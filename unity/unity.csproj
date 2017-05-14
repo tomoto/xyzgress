@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\CF.cs" />
     <Compile Include="Assets\Scripts\EnemyAgent.cs" />
     <Compile Include="Assets\Scripts\FactionManager.cs" />
+    <Compile Include="Assets\Scripts\FireInputButton.cs" />
     <Compile Include="Assets\Scripts\FlashOnChangeText.cs" />
     <Compile Include="Assets\Scripts\FloatingText.cs" />
     <Compile Include="Assets\Scripts\FriendlyAgent.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameProvider.cs" />
     <Compile Include="Assets\Scripts\InitialMenuController.cs" />
+    <Compile Include="Assets\Scripts\InputPadActivator.cs" />
     <Compile Include="Assets\Scripts\InputUtil.cs" />
     <Compile Include="Assets\Scripts\Link.cs" />
     <Compile Include="Assets\Scripts\Link1.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Assets\Scripts\Model\LinkManager.cs" />
     <Compile Include="Assets\Scripts\Model\LinkModel.cs" />
     <Compile Include="Assets\Scripts\Model\PortalModel.cs" />
+    <Compile Include="Assets\Scripts\MoveInputButton.cs" />
     <Compile Include="Assets\Scripts\NPCAgentBase.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />

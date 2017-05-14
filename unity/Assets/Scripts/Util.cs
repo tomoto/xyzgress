@@ -18,6 +18,11 @@ public static class Util {
         return new Vector3(v.x, v.y, depth);
     }
 
+    public static int Or(int a, int b)
+    {
+        return a != 0 ? a : b;
+    }
+
     public static T Instantiate<T>(T original, GameObject parent) where T : Object
     {
         if (parent != null)

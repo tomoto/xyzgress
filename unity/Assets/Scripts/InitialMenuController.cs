@@ -24,6 +24,7 @@ public class InitialMenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        InputUtil.Clear();
         Mask = transform.Find("Mask").gameObject;
 	}
 	
@@ -37,6 +38,7 @@ public class InitialMenuController : MonoBehaviour {
                 Mask.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 StartCoroutine(PlaySoundAfterSeconds(SoundManager.GetInstance().WelcomeBackVoice, 0.7f, 1.5f));
                 DontDestroyOnLoad(SoundManager.GetInstance());
+                DontDestroyOnLoad(InputPadActivator.GetInstance());
                 currentStep++;
                 return; // do not proceed
             case 3:
@@ -70,13 +72,13 @@ public class InitialMenuController : MonoBehaviour {
 
         UpdateArrow();
 
-        if (Input.GetButtonDown(InputUtil.Button1))
+        if (InputUtil.GetButtonDown(0))
         {
             SoundManager.GetInstance().MenuSelectSound.Play();
             currentStep++;
         }
 
-        if (Input.GetButtonDown(InputUtil.Button2) && currentStep > 0)
+        if (InputUtil.GetButtonDown(1) && currentStep > 0)
         {
             currentStep--;
         }

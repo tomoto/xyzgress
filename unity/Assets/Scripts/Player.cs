@@ -48,7 +48,7 @@ public class Player : AgentBase
         Move(dx, dy);
         CenterPlayer();
 
-        if (Input.GetButton(InputUtil.Button1))
+        if (InputUtil.GetButton(0))
         {
             TryAttack();
         }
@@ -60,7 +60,7 @@ public class Player : AgentBase
             }
         }
 
-        if (Input.GetButtonDown(InputUtil.Button2))
+        if (InputUtil.GetButtonDown(1))
         {
             TryCreateLink();
         }
