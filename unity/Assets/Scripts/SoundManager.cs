@@ -8,6 +8,12 @@ public static class AudioClipExtension
     {
         SoundManager.GetInstance().AudioSource.PlayOneShot(sound, volume);
     }
+
+    public static IEnumerator PlayWithDelay(this AudioClip sound, float seconds, float volume = 1.0f)
+    {
+        yield return new WaitForSeconds(seconds);
+        sound.Play(volume);
+    }
 }
 
 public class SoundManager : MonoBehaviour {
@@ -38,7 +44,7 @@ public class SoundManager : MonoBehaviour {
     public AudioClip FinishSound;
     public AudioClip LevelUpSound;
 
-    public AudioClip WelcomeBackVoice;
+    public AudioClip[] StartUpVoices;
 
 	// Use this for initialization
 	void Start () {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,25 +24,31 @@ public class InitialMenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         InputUtil.Clear();
+
         Mask = transform.Find("Mask").gameObject;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+        DontDestroyOnLoad(SoundManager.GetInstance());
+        DontDestroyOnLoad(InputPadActivator.GetInstance());
+    }
+
+    // Update is called once per frame
+    void Update () {
         // Transitive state
         switch (currentStep)
         {
             case 2:
-                gameStartWaitTimer = new TimeTicker(2.0f).Start();
-                Mask.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                StartCoroutine(PlaySoundAfterSeconds(SoundManager.GetInstance().WelcomeBackVoice, 0.7f, 1.5f));
-                DontDestroyOnLoad(SoundManager.GetInstance());
-                DontDestroyOnLoad(InputPadActivator.GetInstance());
+                gameStartWaitTimer = new TimeTicker(2).Start(); // start timer
+                Mask.transform.localScale = new Vector3(0.5f, 0.5f, 1); // init mask size
+                StartCoroutine(SoundManager.GetInstance().StartUpVoices[0].PlayWithDelay(0.7f, 1.5f)); // voice #1 after 0.7 secs
+                StartCoroutine(SoundManager.GetInstance().StartUpVoices[Random.Range(1, 4)].PlayWithDelay(2, 1.5f)); // voice #2 after 2 secs
                 currentStep++;
                 return; // do not proceed
             case 3:
-                Mask.transform.localScale = Mask.transform.localScale * (1 + Time.deltaTime * 5);
-                if (gameStartWaitTimer.IsTimeout()) StartGame();
+                Mask.transform.localScale *= (1 + Time.deltaTime * 5); // scale up the mask
+                if (gameStartWaitTimer.IsTimeout())
+                {
+                    StartGame();
+                }
                 return; // do not proceed
         }
 
@@ -83,12 +88,6 @@ public class InitialMenuController : MonoBehaviour {
             currentStep--;
         }
 	}
-
-    private IEnumerator PlaySoundAfterSeconds(AudioClip sound, float seconds, float volume)
-    {
-        yield return new WaitForSeconds(seconds);
-        sound.Play(volume);
-    }
 
     private void UpdateArrow()
     {
