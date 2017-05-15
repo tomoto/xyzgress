@@ -1,2 +1,4 @@
-/memo
+/memo/
 *.bak
+bin/
+obj/

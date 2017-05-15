@@ -11,6 +11,10 @@ namespace Game.Model
         private List<LinkModel> links = new List<LinkModel>();
         private List<CFModel> cfs = new List<CFModel>();
 
+        public IEnumerable<PortalModel> Portals { get { return portals; } }
+        public IEnumerable<LinkModel> Links { get { return links; } }
+        public IEnumerable<CFModel> CFs { get { return cfs; } }
+
         public float GetMU(Faction faction)
         {
             return cfs.Where(cf => cf.Faction == faction).Sum(cf => cf.MU);

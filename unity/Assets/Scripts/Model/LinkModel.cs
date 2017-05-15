@@ -61,8 +61,10 @@ namespace Game.Model
 
             if (Mathf.Abs(p) <= float.Epsilon && Mathf.Abs(q) <= float.Epsilon)
             {
-                // parallel is OK (hack)
-                return false;
+                // straight
+                var b1r = Vector2.Dot(a12, b1 - a1) / a12.sqrMagnitude;
+                var b2r = Vector2.Dot(a12, b2 - a1) / a12.sqrMagnitude;
+                return ((b1r < 0 || b1r > 1) && (b2r >= 0 && b2r <= 1)) || ((b2r < 0 || b2r > 1) && (b1r >= 0 && b1r <= 1));
             }
             else if (p <= float.Epsilon && q <= float.Epsilon)
             {
