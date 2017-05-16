@@ -14,6 +14,7 @@ public class Portal : MonoBehaviour {
     public PortalModel Model { get; private set; }
     public float Energy { get; private set; }
     public AchievementModel DestroyerAchievement { get; private set; }
+    public bool IsDead { get; private set; }
 
     private GameObject KeySprite;
     private GameObject PortalSprite;
@@ -36,18 +37,20 @@ public class Portal : MonoBehaviour {
         transform.position = transform.position.Set2D(Model.Position);
 
         SetHasKey(false);
-        UpdateFaction();
+        UpdateSprite();
         ResetEnergy();
     }
 
-    private void UpdateFaction()
+    private void UpdateSprite()
     {
         if (Model.Faction != Faction.None)
         {
             PortalSprite.SetActive(true);
             UncapturedPortalSprite.SetActive(false);
-            PortalSprite.GetComponent<Renderer>().material = FactionManager.GetInstance().GetSolidMaterial(Model.Faction);
-        } else
+            PortalSprite.GetComponent<Renderer>().material =
+                FactionManager.GetInstance().GetSolidMaterial(Model.Faction, IsDead);
+        }
+        else
         {
             PortalSprite.SetActive(false);
             UncapturedPortalSprite.SetActive(true);
@@ -83,10 +86,16 @@ public class Portal : MonoBehaviour {
         KeySprite.SetActive(hasKey);
     }
 
+    public void SetDead(bool dead)
+    {
+        IsDead = dead;
+        UpdateSprite();
+    }
+
     public void Capture(Faction faction)
     {
         Model.Faction = faction;
-        UpdateFaction();
+        UpdateSprite();
 
         if (faction != Faction.None)
         {

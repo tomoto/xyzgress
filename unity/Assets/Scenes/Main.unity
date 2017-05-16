@@ -279,6 +279,9 @@ MonoBehaviour:
   SolidMaterials:
   - {fileID: 2100000, guid: d1c636a2678afb9419b997f1813ab365, type: 2}
   - {fileID: 2100000, guid: c0f96c53d5d66de46a4a06dfd63815f0, type: 2}
+  DarkSolidMaterials:
+  - {fileID: 2100000, guid: f5579ffa1742e094aab51e7c655aef43, type: 2}
+  - {fileID: 2100000, guid: 2a76d859ce94e62459d589ef434b2d64, type: 2}
   TransparentMaterials:
   - {fileID: 2100000, guid: 5be72fdd7c5102a46a1d9b4cc8256a2c, type: 2}
   - {fileID: 2100000, guid: ed65bad3f2ada334a92d31f05f373b88, type: 2}

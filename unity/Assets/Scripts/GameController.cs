@@ -191,6 +191,8 @@ public class GameController : MonoBehaviour, GameProvider
 
             SoundManager.GetInstance().CFCreatedSound.Play();
         }
+
+        UpdateDeadPortals();
     }
 
     private Portal ModelToView(PortalModel model)
@@ -251,7 +253,15 @@ public class GameController : MonoBehaviour, GameProvider
 
         // Finally, process the portal
         CapturePortal(portal, newFaction);
+        UpdateDeadPortals();
+    }
 
+    private void UpdateDeadPortals()
+    {
+        foreach (var p in Portals)
+        {
+            p.SetDead(Links.Any(link => link.Model.Overlaps(p.Model)));
+        }
     }
 
     public void CapturePortal(Portal portal, Faction newFaction)

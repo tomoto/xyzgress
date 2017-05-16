@@ -10,12 +10,13 @@ public class FactionManager : MonoBehaviour {
     }
 
     public Material[] SolidMaterials = new Material[2];
+    public Material[] DarkSolidMaterials = new Material[2];
     public Material[] TransparentMaterials = new Material[2];
     public readonly int PlayerFaction = InitialMenuController.Faction; // 0:RES, 1:ENL
 
-    public Material GetSolidMaterial(Faction faction)
+    public Material GetSolidMaterial(Faction faction, bool isDark = false)
     {
-        return SolidMaterials[(int)faction ^ PlayerFaction];
+        return (isDark ? DarkSolidMaterials : SolidMaterials)[(int)faction ^ PlayerFaction];
     }
 
     public Material GetTransparentMaterial(Faction faction)
