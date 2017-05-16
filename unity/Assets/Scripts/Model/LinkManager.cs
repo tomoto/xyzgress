@@ -49,6 +49,12 @@ namespace Game.Model
                 return false;
             }
 
+            if (links.Any(link => link.Overlaps(source)))
+            {
+                message = string.Format("Source portal {0} is overlapped by a link.", source);
+                return false;
+            }
+
             if (cfs.Any(cf => cf.Overlaps(source)))
             {
                 message = string.Format("Source portal {0} is overlapped by a CF.", source);

@@ -59,14 +59,14 @@ namespace Game.Model
             var p = Vector3.Cross(a12, b1 - a1).z * Vector3.Cross(a12, b2 - a1).z;
             var q = Vector3.Cross(b12, a1 - b1).z * Vector3.Cross(b12, a2 - b1).z;
 
-            if (Mathf.Abs(p) <= float.Epsilon && Mathf.Abs(q) <= float.Epsilon)
+            if (p == 0 && q == 0)
             {
                 // straight
                 var b1r = Vector2.Dot(a12, b1 - a1) / a12.sqrMagnitude;
                 var b2r = Vector2.Dot(a12, b2 - a1) / a12.sqrMagnitude;
-                return ((b1r < 0 || b1r > 1) && (b2r >= 0 && b2r <= 1)) || ((b2r < 0 || b2r > 1) && (b1r >= 0 && b1r <= 1));
+                return (!Util.InRange(b1r, 0, 1) && Util.InRange(b2r, 0, 1)) || (!Util.InRange(b2r, 0, 1) && Util.InRange(b1r, 0, 1));
             }
-            else if (p <= float.Epsilon && q <= float.Epsilon)
+            else if (p <= 0 && q <= 0)
             {
                 // cross, inclusive
                 return true;
@@ -76,6 +76,17 @@ namespace Game.Model
                 // OK
                 return false;
             }
+        }
+
+        public bool Overlaps(PortalModel portal)
+        {
+            if (IsConnecting(portal))
+            {
+                return false; // connecting is OK
+            }
+
+            var p = portal.Position - Source.Position;
+            return Vector3.Cross(Vector, p).z == 0 && Util.InRange(Vector2.Dot(Vector, p) / Vector.sqrMagnitude, 0, 1);
         }
 
         public override string ToString()

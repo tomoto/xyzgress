@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Util {
+    // Vector
+
     public static Vector3 Set2D(this Vector3 target, Vector3 source)
     {
         return new Vector3(source.x, source.y, target.z);
@@ -18,10 +20,21 @@ public static class Util {
         return new Vector3(v.x, v.y, depth);
     }
 
+    // Logical
+
     public static int Or(int a, int b)
     {
         return a != 0 ? a : b;
     }
+
+    // Math
+
+    public static bool InRange(float x, float min, float max)
+    {
+        return x >= min && x <= max; // inclusive
+    }
+
+    // Unity Objects
 
     public static T Instantiate<T>(T original, GameObject parent) where T : Object
     {
@@ -34,6 +47,8 @@ public static class Util {
             return Object.Instantiate(original);
         }
     }
+
+    // Geometory
 
     public static Quaternion Get4WayRotation(float dx, float dy)
     {
