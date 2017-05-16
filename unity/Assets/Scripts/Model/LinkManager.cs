@@ -85,6 +85,12 @@ namespace Game.Model
                 return false;
             }
 
+            if (links.Any(link => link.Overlaps(target)))
+            {
+                message = string.Format("Target portal {0} is overlapped by a link.", target);
+                return false;
+            }
+
             LinkModel newLink = new LinkModel(source, target);
 
             if (links.Any(link => link.EqualsIgnoreDirection(newLink)))
