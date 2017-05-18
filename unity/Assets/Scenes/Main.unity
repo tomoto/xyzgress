@@ -1506,6 +1506,8 @@ MonoBehaviour:
     type: 2}
   FriendlyAgentPrefab: {fileID: 114913921984385048, guid: 5a6b33f6554660747be1f4c568109d08,
     type: 2}
+  RecruitPrefab: {fileID: 114914991319782590, guid: 6c319f08044dd58419b47824ee22b1fb,
+    type: 2}
   FieldLayer: {fileID: 1616822045}
   AgentLayer: {fileID: 861161161}
   LinkLayer: {fileID: 573084073}

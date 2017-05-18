@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour, GameProvider
     public Player PlayerPrefab;
     public EnemyAgent EnemyAgentPrefab;
     public FriendlyAgent FriendlyAgentPrefab;
+    public RecruitController RecruitPrefab;
 
     public GameObject FieldLayer;
     public GameObject AgentLayer;
@@ -53,6 +54,11 @@ public class GameController : MonoBehaviour, GameProvider
         PopulateField();
         PlayerInventory.Bursters = GameConstants.InitialPlayerBursters;
         Scoreboard.DisplayBursters(PlayerInventory.Bursters);
+
+        if (RecruitController.InstanceCount == 0)
+        {
+            this.RunAfterSeconds(2, () => Instantiate(RecruitPrefab));
+        }
 
         startTime = Time.time;
         IsGameOver = false;

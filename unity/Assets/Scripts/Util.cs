@@ -48,6 +48,18 @@ public static class Util {
         }
     }
 
+    // Unity delay
+    public static void RunAfterSeconds(this MonoBehaviour context, float seconds, System.Action action)
+    {
+        context.StartCoroutine(DoAfterSecondsCoroutine(seconds, action));
+    }
+
+    private static IEnumerator DoAfterSecondsCoroutine(float seconds, System.Action action)
+    {
+        yield return new WaitForSeconds(seconds);
+        action();
+    }
+
     // Geometory
 
     public static Quaternion Get4WayRotation(float dx, float dy)

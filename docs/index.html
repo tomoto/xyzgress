@@ -17,6 +17,23 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 
+<!-- Recruit Begin -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="xyzgress.js"></script>
+<script type='text/javascript'>
+function recruit() {
+  doRecruit({
+    "title": "リクルート",
+    "confirmation": "他のエージェントをリクルートします。どのSNSを使いますか？",
+    "message": "#XYZGRESS やろうぜ！",
+    "cancel": "やめる"
+  });
+}
+</script>
+<!-- Recruit End -->
+
 <title>XYZGRESS</title>
 
 </head>
@@ -73,6 +90,7 @@
     <p>※WebGLをサポートしたブラウザが必要です。動き出すまで時間がかかるので気長にお待ちください。</p>
 
 <!-- Unity WebGL Player Begin -->
+<div id="gameplayer">
 <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="600px" style="border-style: solid"></canvas>
 <a href="javascript:void(0)" onclick="SetFullscreen(1)">Fullscreen</a>
 <!-- <img src="xyzgressweb/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /> -->
@@ -90,6 +108,7 @@
   };
 </script>
 <script src="xyzgressweb//Release/UnityLoader.js"></script>
+</div>
 <!-- Unity WebGL Player End -->
 
    </div>
