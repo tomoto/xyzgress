@@ -91,10 +91,12 @@ MonoBehaviour:
   Speed: 3
   Direction: {x: 0, y: 1}
   KeyDropRate: 0.8
-  CreateLinkRate: 0.4
+  CreateLinkRate: 0.8
   ChangeDirectionRate: 0.02
-  PortalAttackRate: 0.25
+  PortalAttackRate: 0.2
   PortalAttackMaxDistance: 3
+  territoryMinX: -999
+  territoryMaxX: 999
 --- !u!212 &212198893249887896
 SpriteRenderer:
   m_ObjectHideFlags: 1

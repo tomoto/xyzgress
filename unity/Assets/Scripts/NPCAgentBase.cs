@@ -14,6 +14,9 @@ public abstract class NPCAgentBase : AgentBase
     public float PortalAttackRate = 0.25f;
     public float PortalAttackMaxDistance = 3.0f;
 
+    public float territoryMinX = -999;
+    public float territoryMaxX = 999;
+
     private KeyInventoryModel inventory = new KeyInventoryModel();
     private Portal attackTargetPortal;
 
@@ -23,6 +26,12 @@ public abstract class NPCAgentBase : AgentBase
     {
         base.Init(gameProvider);
         return this;
+    }
+
+    public void SetTerritory(float minX, float maxX)
+    {
+        territoryMinX = minX;
+        territoryMaxX = maxX;
     }
 
     // Use this for initialization
@@ -142,7 +151,19 @@ public abstract class NPCAgentBase : AgentBase
 
     private void ChangeDirection()
     {
+        const float margin = 3;
+        var x = transform.position.x;
+
+        System.Func<float,float> f = (center) => Util.Sigmoid((x - center));
+
+        var xt = 0.25 * (f(territoryMinX - margin) + f(territoryMaxX + margin)); // between 0 and 0.5
+
+        // Debug.Log(string.Format("Territory=({0},{1}), x={2}, xt={3}", territoryMinX, territoryMaxX, x, xt));
+
         var r = Random.value;
-        Direction = new Vector2(r < 0.25 ? -1 : r < 0.5 ? 1 : 0, r < 0.5 ? 0 : r < 0.75 ? -1 : 1);
+        var dx = r < xt ? -1 : r < 0.5 ? 1 : 0;
+        var dy = r < 0.5 ? 0 : r < 0.75 ? -1 : 1;
+
+        Direction = new Vector2(dx, dy);
     }
 }

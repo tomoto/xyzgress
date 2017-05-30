@@ -34,6 +34,11 @@ public static class Util {
         return x >= min && x <= max; // inclusive
     }
 
+    public static float Sigmoid(float x)
+    {
+        return 1 / (1 + Mathf.Exp(-x));
+    }
+
     // Unity Objects
 
     public static T Instantiate<T>(T original, GameObject parent) where T : Object

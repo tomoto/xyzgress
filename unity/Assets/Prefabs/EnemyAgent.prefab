@@ -95,6 +95,8 @@ MonoBehaviour:
   ChangeDirectionRate: 0.02
   PortalAttackRate: 0.2
   PortalAttackMaxDistance: 3
+  territoryMinX: -999
+  territoryMaxX: 999
 --- !u!212 &212944694270611530
 SpriteRenderer:
   m_ObjectHideFlags: 1

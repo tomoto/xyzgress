@@ -131,9 +131,13 @@ public class GameController : MonoBehaviour, GameProvider
 
     private void PopulateField()
     {
-        for (int y = 0; y < Field.Height; y++)
+        var defaultPortalFaction = Faction.Enemy;
+        var sortedEnemyAgents = new List<EnemyAgent>(); // enemy agents sorted from left to right
+        var sortedFriendlyAgents = new List<FriendlyAgent>(); // friendly agents sorted from left to right
+
+        for (int x = 0; x < Field.Width; x++)
         {
-            for (int x = 0; x < Field.Width; x++)
+            for (int y = 0; y < Field.Height; y++)
             {
                 switch (Field.GetItemAt(x, y))
                 {
@@ -142,7 +146,7 @@ public class GameController : MonoBehaviour, GameProvider
                         block.transform.position = new Vector2(x, y);
                         break;
                     case FieldModel.FieldItem.Portal:
-                        var portalModel = LinkManager.AddPortal(new Vector2(x, y), Faction.Enemy);
+                        var portalModel = LinkManager.AddPortal(new Vector2(x, y), defaultPortalFaction);
                         Portals.Add(Util.Instantiate(PortalPrefab, FieldLayer).Init(portalModel));
                         break;
                     case FieldModel.FieldItem.Player:
@@ -152,14 +156,19 @@ public class GameController : MonoBehaviour, GameProvider
                     case FieldModel.FieldItem.Friendly:
                         var friendly = Util.Instantiate(FriendlyAgentPrefab, AgentLayer).Init(this);
                         friendly.SetPosition(new Vector2(x, y));
+                        sortedFriendlyAgents.Add(friendly);
                         break;
                     case FieldModel.FieldItem.Enemy:
                         var enemy = Util.Instantiate(EnemyAgentPrefab, AgentLayer).Init(this);
                         enemy.SetPosition(new Vector2(x, y));
+                        sortedEnemyAgents.Add(enemy);
                         break;
                 }
             }
         }
+
+        NPCAgentHelper.InitNPCAgentProfiles(sortedEnemyAgents, Field);
+        NPCAgentHelper.InitNPCAgentProfiles(sortedFriendlyAgents, Field);
     }
 
     public IEnumerable<Portal> FindLinkablePortals(Faction faction, KeyInventoryModel inventory, Portal source)
